@@ -1,0 +1,18 @@
+1.1
+2.1
+Current time from1.1 :23:18:14.78
+Current time from2.1 :23:18:14.78
+ERROR: Input redirection is not supported, exiting the process immediately.
+ERROR: Input redirection is not supported, exiting the process immediately.
+1.2
+2.2
+Current time from1.2 :23:18:14.81
+Current time from2.2 :23:18:14.81
+ERROR: Input redirection is not supported, exiting the process immediately.
+ERROR: Input redirection is not supported, exiting the process immediately.
+1.3
+2.3
+Current time from1.3 :23:18:14.83
+Current time from2.3 :23:18:14.84
+ERROR: Input redirection is not supported, exiting the process immediately.
+ERROR: Input redirection is not supported, exiting the process immediately.
