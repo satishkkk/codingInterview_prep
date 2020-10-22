@@ -53,6 +53,7 @@ public class StreamTest {
                 .collect(Collectors.toList());
 
         String result1 = stud2.stream().map(std -> std.getName()).collect(Collectors.joining(",", "[", "]"));
+        System.out.println("----------Get all student having mobile numbers 3333.----------");
         System.out.println(result1);
         System.out.println("--------------------");
 
