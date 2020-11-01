@@ -19,7 +19,7 @@ public class Fibonaci {
             int a = fibo(n-1);
             int b = fibo(n-2);
 
-            System.out.println(a+b + " ");
+//            System.out.println(a+b + " ");
             return a+b;
         }
     }

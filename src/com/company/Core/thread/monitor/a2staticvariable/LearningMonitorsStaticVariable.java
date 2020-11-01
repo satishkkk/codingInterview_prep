@@ -1,7 +1,6 @@
-package com.company.Core.thread.monitor;
+package com.company.Core.thread.monitor.a2staticvariable;
 
-public class LearningMonitors {
-
+public class LearningMonitorsStaticVariable {
     public static void main(String[] args) {
         System.out.println("Start Race");
         Car car = new Car();
@@ -24,11 +23,11 @@ public class LearningMonitors {
 
 class TestBed
 {
+    static int lap = 0;
     public void busyTracks()
     {
         Thread t = Thread.currentThread();
         System.out.println(t.getName() + " Enters busyTracks");
-        int lap = 0;
         for(lap=0;lap<5;lap++)
         {
             String str = String.format(
@@ -43,7 +42,6 @@ class TestBed
             {
                 Thread.sleep(1000);
             }
-
             catch(InterruptedException e)
             {
                 System.out.println("Thread interrupted");
@@ -80,3 +78,4 @@ class Bike extends Thread
         System.out.println("Bike Ends Journey");
     }
 }
+
