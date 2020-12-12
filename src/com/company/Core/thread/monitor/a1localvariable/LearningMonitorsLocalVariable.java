@@ -2,26 +2,33 @@ package com.company.Core.thread.monitor.a1localvariable;
 
 public class LearningMonitorsLocalVariable {
 
+    /*
+    * DIFFERENCE BETWEEN START AND JOIN . . . . .
+    * Illustrates that local variables are not shared resources across threads and that they don’t cause thread interference.
+    * Observations : Local Variables are not Shared Resources.
+    */
+
     public static void main(String[] args) {
-        System.out.println("Start Race");
+        System.out.println("Start Race - Main Thread");
+
         Car car = new Car();
         Bike bike = new Bike();
         car.setName("Car");
         bike.setName("Bike");
 
-        car.start();
-        bike.start();
+        car.start(); //start car thread
+        bike.start(); //start bike thread
+
         try {
-            car.join();
-            bike.join();
+            car.join(); // block main thread , until car thread will complete - - - - - -
+            bike.join(); // // block main thread , until bike thread will complete - - - - - -
         } catch (InterruptedException ex) {
             System.out.println("Join interrupted "+ ex);
         }
-        System.out.println("End Race");
+
+        System.out.println("End Race - Main Thread");
     }
 }
-
-
 
 class TestBed
 {
@@ -29,7 +36,8 @@ class TestBed
     {
         Thread t = Thread.currentThread();
         System.out.println(t.getName() + " Enters busyTracks");
-        int lap = 0;
+
+        int lap = 0; // local variable which is different for all the threads
         for(lap=0;lap<5;lap++)
         {
             String str = String.format(

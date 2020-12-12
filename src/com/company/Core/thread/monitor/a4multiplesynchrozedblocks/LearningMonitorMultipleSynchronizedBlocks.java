@@ -1,15 +1,8 @@
-package com.company.Core.thread.monitor.a3synchronizedblock;
+package com.company.Core.thread.monitor.a4multiplesynchrozedblocks;
 
-/*
-* Illustrates that static variables are shared resources across threads and that they cause thread interference.
-* The problem of this interference can be solved using a Monitor.
-*
-* Observation : Static Variables are Shared Resources. However, they may cause thread interference. The problem is solved using Monitors
-* */
-public class LearningMonitorSynchronized {
+public class LearningMonitorMultipleSynchronizedBlocks {
     public static void main(String[] args) {
         System.out.println("Start Race");
-
         Car car = new Car();
         Bike bike = new Bike();
         car.setName("Car");
@@ -39,7 +32,7 @@ class TestBed
         Thread t = Thread.currentThread();
         System.out.println(t.getName() + " Enters busyTracks");
 
-        synchronized(Regulator.lapMonitor) // synchronized block for static variable lap
+        synchronized(Regulator.lapMonitor)
         {
             for(lap=0;lap<5;lap++)
             {
@@ -62,6 +55,35 @@ class TestBed
         }
         System.out.println(t.getName() + " Leaves busyTracks");
     }
+
+    public void busyLanes()
+    {
+        Thread t = Thread.currentThread();
+        System.out.println(t.getName() + " Enters busyLanes");
+
+        synchronized(Regulator.lapMonitor)
+        {
+            for(lap=0;lap<5;lap++)
+            {
+                String str = String.format(
+                        "%s in Lap %d %s",
+                        t.getName(),
+                        lap,
+                        t.getName().equals("Car")?"brrrrooms":"vrrrrooms"
+                );
+                System.out.println(str);
+                try
+                {
+                    Thread.sleep(1000);
+                }
+                catch(InterruptedException e)
+                {
+                    System.out.println("Thread interrupted");
+                }
+            }
+        }
+        System.out.println(t.getName() + " Leaves busyLanes");
+    }
 }
 
 class Car extends Thread
@@ -76,6 +98,8 @@ class Car extends Thread
     }
 }
 
+
+
 class Bike extends Thread
 {
     @Override
@@ -83,7 +107,8 @@ class Bike extends Thread
     {
         System.out.println("Bike Starts Journey");
         TestBed b = new TestBed();
-        b.busyTracks();
+        b.busyLanes();
         System.out.println("Bike Ends Journey");
     }
+
 }

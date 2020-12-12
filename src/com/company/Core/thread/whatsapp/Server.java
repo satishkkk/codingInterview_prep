@@ -8,9 +8,11 @@ import java.net.Socket;
 public class Server {
     public static void main(String[] args) throws Exception {
         System.out.println("Server Signing ON");
-        ServerSocket ss = new ServerSocket(9081);
+
+        ServerSocket ss = new ServerSocket(9081); //server socket object to generate socket
+
         for(int i=0;i<10;i++){
-            Socket soc = ss.accept();
+            Socket soc = ss.accept(); //blocking call
             Conversation c = new Conversation(soc,i);
             System.out.println("Creating Thread: "+i);
             c.start();
@@ -32,12 +34,15 @@ class Conversation extends Thread {
     @Override
     public void run() {
         try {
+
             BufferedReader nis = new BufferedReader(
                     new InputStreamReader(
                             soc.getInputStream()
                     )
             );
-            String str = nis.readLine();
+
+            String str = nis.readLine(); //blocking call
+
             while (!str.equals("End")) {
                 System.out.println("Server Recieved :" + str + " from client :" + i);
                 str = nis.readLine();

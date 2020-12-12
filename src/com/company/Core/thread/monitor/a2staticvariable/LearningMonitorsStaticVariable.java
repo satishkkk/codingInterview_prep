@@ -1,21 +1,27 @@
 package com.company.Core.thread.monitor.a2staticvariable;
 
+/*
+ * Illustrates that static variables are shared resources across threads and that they cause thread interference.
+ * Observations : Local Variables are not Shared Resources.
+ */
 public class LearningMonitorsStaticVariable {
     public static void main(String[] args) {
-        System.out.println("Start Race");
+        System.out.println("Start Race - Main thread");
         Car car = new Car();
         Bike bike = new Bike();
         car.setName("Car");
         bike.setName("Bike");
+        //starting the threads .. .
         car.start();
         bike.start();
+
         try {
-            car.join();
-            bike.join();
+            car.join(); // block main thread , until car thread will complete - - - - - -
+            bike.join(); // // block main thread , until bike thread will complete - - - - - -
         } catch (InterruptedException ex) {
             System.out.println("Join interrupted "+ ex);
         }
-        System.out.println("End Race");
+        System.out.println("End Race - Main thread");
     }
 }
 
@@ -23,7 +29,7 @@ public class LearningMonitorsStaticVariable {
 
 class TestBed
 {
-    static int lap = 0;
+    static int lap = 0; //static variable which will share all the threads which will use the classs TestBed
     public void busyTracks()
     {
         Thread t = Thread.currentThread();

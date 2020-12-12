@@ -2,17 +2,13 @@ package com.company;
 
 public class divideby33 {
     public static void main(String[] args) {
-
-        final int num =100;
-        int part = 3;
-        System.out.println("fs");
-        int chunkSize= num/part;
-
-        int n=1;
-        while(n <= num){
-            System.out.println(n);
-            n=n+chunkSize;
+        int n= 10;
+        for(int i = 0; i < n; i++){
+            for(; i < n; i++){
+                System.out.println(i);
+            }
         }
+
 
     }
 }

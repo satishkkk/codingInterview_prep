@@ -27,7 +27,7 @@ class Parent1 {
 class Child1 extends Parent1 {
 //    static int x; //variable shadowing
     static int y;
-    /* is it allowed ? yes its allowed . .  . .  . .*/
+    /* is it allowed ? yes its allowed . .  . .  . . but this is not overriding it called as method hiding */
     static void printX(){ // method hiding
         System.out.println("Child x is "+ x);
     }
