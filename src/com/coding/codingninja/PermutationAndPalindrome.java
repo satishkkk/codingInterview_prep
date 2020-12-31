@@ -1,4 +1,4 @@
-package com.coding.codingninja.codechef;
+package com.coding.codingninja;
 
 import java.util.ArrayList;
 import java.util.Arrays;

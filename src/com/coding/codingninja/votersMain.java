@@ -1,4 +1,4 @@
-package com.coding.codingninja.codechef;
+package com.coding.codingninja;
 
 import java.io.BufferedReader;
 import java.io.IOException;

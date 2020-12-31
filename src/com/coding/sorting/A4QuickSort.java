@@ -44,7 +44,7 @@ public class A4QuickSort {
         }
         swap(start , right ,arr);
 
-        //TIP2 :  to check if left sub array is smaller
+        //TIP2 :  Always process smaller array first . . . .  to check if left sub array is smaller
         boolean leftSubarrayIsSmaller = right-1-start < end-(right+1);
         if(leftSubarrayIsSmaller){
             quickSortHelper(start,right-1,arr);

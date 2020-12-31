@@ -1,4 +1,4 @@
-package com.coding.codingninja;
+package com.coding.codingninja.codechef;
 
 import java.io.DataInputStream;
 import java.io.FileInputStream;
