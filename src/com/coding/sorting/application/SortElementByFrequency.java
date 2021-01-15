@@ -1,6 +1,8 @@
 package com.coding.sorting.application;
 
 import java.util.*;
+//java 8 sort article
+//https://www.baeldung.com/java-8-sort-lambda
 
 public class SortElementByFrequency {
     public static void main(String[] args) {
@@ -10,32 +12,25 @@ public class SortElementByFrequency {
 
     private static void sortArrayElementsByFrequency(int[] inputArray)
     {
-        Map<Integer, Integer> elementCountMap = new LinkedHashMap<>();
+        //Create an ArrayList to hold sorted elements
+        ArrayList<Integer> sortedElements = new ArrayList<>();
 
+        Map<Integer, Integer> elementCountMap = new LinkedHashMap<>();
         for (int i = 0; i < inputArray.length; i++)
         {
-            if (elementCountMap.containsKey(inputArray[i]))
-            {
-                //If element is present in elementCountMap, increment its value by 1
-                elementCountMap.put(inputArray[i], elementCountMap.get(inputArray[i])+1);
-            }
-            else
-            {
-                //If element is not present, insert this element with 1 as its value
-                elementCountMap.put(inputArray[i], 1);
-            }
+            int count = elementCountMap.getOrDefault(inputArray[i], 0);
+            elementCountMap.put(inputArray[i], count + 1);
         }
-
-        //Create an ArrayList to hold sorted elements
-
-        ArrayList<Integer> sortedElements = new ArrayList<>();
 
         //Java 8 code to sort elementCountMap by values in reverse order
         //and put keys into sortedElements list
 
+        Comparator<Map.Entry<Integer,Integer>> comparator = (e1,e2)-> e2.getValue().compareTo(e1.getValue());
+
         elementCountMap.entrySet()
                 .stream()
-                .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
+//                .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
+                .sorted(comparator)
                 .forEach(entry -> {
                     for(int i = 1; i <= entry.getValue(); i++)
                         sortedElements.add(entry.getKey());
@@ -50,3 +45,4 @@ public class SortElementByFrequency {
         System.out.println(sortedElements);
     }
 }
+

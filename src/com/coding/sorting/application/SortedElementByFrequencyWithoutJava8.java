@@ -4,6 +4,7 @@ import java.util.*;
 
 public class SortedElementByFrequencyWithoutJava8 {
     public static void main(String[] args) {
+
         int[] array = {4, 4, 2, 2, 2, 2, 3, 3, 1, 1, 6, 7, 5};
 
         Map<Integer, Integer> map = new HashMap<>();

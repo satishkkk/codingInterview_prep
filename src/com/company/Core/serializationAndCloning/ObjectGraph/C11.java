@@ -1,6 +1,6 @@
 package com.company.Core.serializationAndCloning.ObjectGraph;
 
-import com.company.p1.C2;
+import com.company.Core.TrickyQuestions.p1.C2;
 
 import java.io.Serializable;
 

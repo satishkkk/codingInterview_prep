@@ -42,7 +42,7 @@ public class A4QuickSort {
                 right=right-1;
             }
         }
-        swap(start , right ,arr);
+        swap(start , right ,arr);// very important step to put pivot element into correct poition
 
         //TIP2 :  Always process smaller array first . . . .  to check if left sub array is smaller
         boolean leftSubarrayIsSmaller = right-1-start < end-(right+1);
