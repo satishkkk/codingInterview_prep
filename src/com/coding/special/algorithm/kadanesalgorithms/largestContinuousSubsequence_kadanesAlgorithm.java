@@ -12,9 +12,10 @@ public class largestContinuousSubsequence_kadanesAlgorithm {
 
         for(int i=0 ;i <a.length ; i++ ){
             currentSum = currentSum + a[i];
-            if(maxSum < currentSum){
-                maxSum = currentSum;
-            }
+            maxSum = Math.max(currentSum,maxSum);
+//            if(maxSum < currentSum){
+//                maxSum = currentSum;
+//            }
             //if sum is -ve then make it 0
             if(currentSum < 0){
                 currentSum=0;
