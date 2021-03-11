@@ -36,24 +36,28 @@ public class A1_FindFirstPeak {
         int n = A.length;
         int start =0;
         int end = n-1;
+        if (n==1) return A[0];
+        if(A[1] <= A[0]) return A[0];
+        if(A[n-1]>=A[n-2]) return A[n-1];
+
         while(start <= end){
             int mid  = start + (end-start)/2;
 
-            if ((n==1) ||(mid == 0 && A[mid+1] <= A[mid]) || (mid == n-1 && A[mid-1] <= A[mid])){
+
+
+            if((A[mid] >= A[mid-1]) && (A[mid] >= A[mid+1])){
                 return A[mid];
             }
 
-            if((mid!= 0 && A[mid] >= A[mid-1]) && (mid!=n-1 && A[mid] >= A[mid+1])){
-                return A[mid];
-            }
-
-            if( (mid+1 <= n-1) && (A[mid+1] >= A[mid])){
+            if((A[mid+1] >= A[mid])){
                 start = mid+1;
-            }else if((mid-1 >= 0) && (A[mid-1] >= A[mid])){
+            }else if( (A[mid-1] >= A[mid])){
                 end =mid -1;
             }
         }
         return -1;
     }
+
+
 
 }
