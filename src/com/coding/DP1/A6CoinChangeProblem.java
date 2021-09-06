@@ -1,6 +1,6 @@
 package com.coding.DP1;
 
-import sun.swing.BakedArrayList;
+
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,7 +14,7 @@ public class A6CoinChangeProblem {
     // Recursive way
     public static int countWaysToMakeChange(int denominations[], int n){
         if(n==0){
-            return 1; //tu bhi muje kuch mat de mai bhi tujhe kuch nahi dega ->so 1 way
+            return 1; //tu bhi muje kuch mat de mai bhi tujhe kuch nahi dega -> so 1 way
         }
         if(denominations.length==0){
             return 0;// no coins so 0 ways
@@ -57,6 +57,7 @@ public class A6CoinChangeProblem {
         return left+right;
     }
 
+    //bottom up
     public static int countWaysToMakeChangedp(int denominations[], int value){
         int coinsLength = denominations.length;
         int dp [][] = new int[value+1][coinsLength];
@@ -71,10 +72,10 @@ public class A6CoinChangeProblem {
                 int x = (i-denominations[j]>=0) ? dp[i- denominations[j]][j]:0;
                 //count of solutions excluding denominations[j]
                 int y = (j>=1) ? dp[i][j-1] : 0;
-
                 dp[i][j] = x+y;
             }
         }
+
         return dp[value][coinsLength-1];
     }
 
@@ -135,9 +136,13 @@ public class A6CoinChangeProblem {
 
 /*
 * Coin Change Problem
-Send Feedback
-For the given infinite supply of coins of each of denominations, D = {D0, D1, D2, D3, ...... Dn-1}. You need to figure out the total number of ways W, in which you can make the change for Value V using coins of denominations D.
+
+For the given infinite supply of coins of each of denominations,
+* D = {D0, D1, D2, D3, ...... Dn-1}.
+* You need to figure out the total number of ways W, in which you can make the change for Value V
+*  using coins of denominations D.
 Return 0 if the change isn't possible.
+*
 Input Format
 The first line of the input contains an integer value N, which denotes the total number of denominations.
 
