@@ -1,4 +1,4 @@
-package com.company.designpattern.templatemethodpattern;
+package com.templatemethodpattern;
 
 public interface Piggy {
     void deposit(int v);

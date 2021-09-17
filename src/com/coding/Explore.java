@@ -1,4 +1,4 @@
-package com.collections;
+package com.coding;
 
 
 import java.util.Collections;
