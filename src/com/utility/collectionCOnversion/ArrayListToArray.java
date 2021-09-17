@@ -35,6 +35,7 @@ public class ArrayListToArray {
 //                .mapToInt(i -> i==null ? 0 : i) // to handle null
                 .mapToInt(Integer::intValue)
                 .toArray();
+
         return a;
     }
 
