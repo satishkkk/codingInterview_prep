@@ -1,4 +1,4 @@
-package com.company.designpattern.templatemethodpattern;
+package com.templatemethodpattern;
 
 public class Program {
 

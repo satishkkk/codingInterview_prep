@@ -1,4 +1,4 @@
-package com.collections.list;
+package com.coding.list;
 
 import java.util.ArrayList;
 import java.util.HashSet;

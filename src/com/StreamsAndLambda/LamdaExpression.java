@@ -1,4 +1,4 @@
-package com.company.java8.StreamsAndLambda;
+package com.StreamsAndLambda;
 
 public class LamdaExpression {
 
