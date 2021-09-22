@@ -18,35 +18,33 @@ public class SlidingWindowMaximum {
     }
 
     public static int[] maxSlidingWindowOptimize(int[] nums, int k){
+        // assume nums is not null
         int n = nums.length;
-        Deque<Integer> deque = new ArrayDeque<>();
-        int[] ans = new int[n-k+1];
-        int i=0;
-        //set first k elemet
-        for(i=0;i<k;i++){
-            if(!deque.isEmpty() && nums[deque.getFirst()] < nums[i]){
-                deque.poll();
-            }
-            deque.add(i);
+        if (n == 0 || k == 0) {
+            return new int[0];
         }
+        int[] result = new int[n - k + 1]; // number of windows
+        Deque<Integer> win = new ArrayDeque<>(); // stores indices
 
-        for(;i<n;i++){
-            ans[i-k]=nums[deque.peek()];
-            //1. Remove the element which are not the part of windows
-            while(!deque.isEmpty() && deque.peek()<= i-k){
-                deque.poll();
+        for (int i = 0; i < n; ++i) {
+            // remove indices that are out of bound
+            while (win.size() > 0 && win.peekFirst() <= i - k) {
+                win.pollFirst();
             }
-            //2. Remvoe the elements which are not useful and are in windows
-            while(!deque.isEmpty() && nums[i] >= nums[deque.getLast()]){
-                deque.pollLast();
+            // remove indices whose corresponding values are less than nums[i]
+            while (win.size() > 0 && nums[win.peekLast()] < nums[i]) {
+                win.pollLast();
             }
-            //3. add new element expansion
-            deque.addLast(i);
+            // add nums[i]
+            win.offerLast(i);
+            // add to result
+            if (i >= k - 1) {
+                result[i - k + 1] = nums[win.peekFirst()];
+            }
         }
-        ans[i-k]=nums[deque.peek()];
-        return ans;
-
+        return result;
     }
+
     public static int[] maxSlidingWindow(int[] nums, int k) {
         PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a, b) -> b-a);
         int ans[] = new int[nums.length-k+1];
