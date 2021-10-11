@@ -3,8 +3,6 @@ package com.coding.recursion;
 public class A2_fctorial {
 
     int factorial(int n){
-
-
         if(n==0){
             return 1;
         }
