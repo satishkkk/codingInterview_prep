@@ -37,6 +37,18 @@ for (int[] interval : intervals) {
         }
 }
 
+
+# Convert ArrayList to array 
+```java
+Integer[] array = numbersList.toArray(new Integer[0]);
+
+String[] array = strList.toArray(new String[0]);
+```
+https://codeahoy.com/java/How-To-Convery-ArrayList-To-Array/ 
+What’s with the weird-looking argument new Integer[0]? The reason it is there because the type of returned array is determined using this argument. In other words, the toArray(...) method uses the type of the argument, Integer to create another array of the same type, places all elements from ArrayList into the array in order and returns it.
+
+There is something else about the behavior of toArray(...) method you must understand. Notice that we passed an empty array new Integer[0]. This was intentional because if we pass a non-empty array and it has enough room to fit all elements, ArrayList will use this array instead of creating a new one. So by passing an empty array (size 0), we’re forcing ArrayList to create a new array and return it. The returned array is not connected to ArrayList in any way, but keep in mind that it is a shallow copy of the elements of the ArrayList.
+
 ```
 # Collection.toArray() return Array from linkedlist
 ```java
@@ -44,9 +56,14 @@ for (int[] interval : intervals) {
  ```
 # Convert all keys of map to int array (mapToInt & toArray)
 ```java
-
-        Integer[] uniqueNumber = map.keySet().toArray(Integer[] :: new); // convert object array to INteger array
         int[] uniqueNumber = map.keySet().stream().mapToInt(Integer::intValue).toArray();
+```
+
+# toArray in java to convert collections to array 
+```java
+        Integer[] uniqueNumber = map.keySet().toArray(Integer[] :: new); // convert object array to INteger array
+        Integer [] numArray = numList.stream().toArray( n -> new Integer[n]);
+        
 ```
 
 # Convert set to list 
