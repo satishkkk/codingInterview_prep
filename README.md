@@ -73,7 +73,7 @@ There is something else about the behavior of toArray(...) method you must under
   //OR
   List<List<Integer>> list = new ArrayList<>(set); // pass in constructor
   // OR
-  List<List<Integer>> list = new ArrayList<>(set);
+  List<List<Integer>> list = new ArrayList<>();
   list.addAll(set);
 ```
 
