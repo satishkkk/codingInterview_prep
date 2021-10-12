@@ -46,11 +46,5 @@ for (int[] interval : intervals) {
 # Convert set to list 
 ```java
   Set<List<Integer>> out = new HashSet<>();
-    
-    public List<List<Integer>> subsetsWithDup(int[] nums) {
-        Arrays.sort(nums);
-        generateSubset(nums,nums.length);
-        return out.stream().collect(Collectors.toList());
-    }
-    
+  return out.stream().collect(Collectors.toList());  
 ```
