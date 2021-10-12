@@ -38,7 +38,7 @@ for (int[] interval : intervals) {
 }
 
 ```
-# <<Collection>>.toArray() return Array from linkedlist
+# <Collection>.toArray() return Array from linkedlist
 ```java
  return merged.toArray(new int[merged.size()][]);
  ```
