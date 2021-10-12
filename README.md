@@ -3,9 +3,12 @@ frequently asked coding questions with solution
 
 
 # Custom Sorting
+```java
 int[][] intervals = {{1,3},{8,10},{2,6},{15,18}};
 Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
+```
 
+```java
 Arrays.sort(intervals, (a, b) -> {
   int comp = a[0]-b[0];
   if(comp==0){
@@ -13,10 +16,13 @@ Arrays.sort(intervals, (a, b) -> {
   }
   return comp;
 });
+```
+
 
 #LinkedList
 LinkedList<int[]> merged = new LinkedList<>();
 
+```java
 for (int[] interval : intervals) {
        // if the list of merged intervals is empty or if the current
         // interval does not overlap with the previous, simply append it.
@@ -30,5 +36,8 @@ for (int[] interval : intervals) {
         }
 }
 
+```
 # return element
+```java
  return merged.toArray(new int[merged.size()][]);
+ ```
