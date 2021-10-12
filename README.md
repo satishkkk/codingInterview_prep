@@ -37,6 +37,7 @@ for (int[] interval : intervals) {
         }
 }
 
+```
 
 # Convert ArrayList to array 
 ```java
