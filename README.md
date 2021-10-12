@@ -20,7 +20,7 @@ Arrays.sort(intervals, (a, b) -> {
 
 
 # LinkedList
-```
+```java
 LinkedList<int[]> merged = new LinkedList<>();
 ```
 
