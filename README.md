@@ -50,7 +50,6 @@ What’s with the weird-looking argument new Integer[0]? The reason it is there 
 
 There is something else about the behavior of toArray(...) method you must understand. Notice that we passed an empty array new Integer[0]. This was intentional because if we pass a non-empty array and it has enough room to fit all elements, ArrayList will use this array instead of creating a new one. So by passing an empty array (size 0), we’re forcing ArrayList to create a new array and return it. The returned array is not connected to ArrayList in any way, but keep in mind that it is a shallow copy of the elements of the ArrayList.
 
-```
 # Collection.toArray() return Array from linkedlist
 ```java
  return merged.toArray(new int[merged.size()][]);
