@@ -42,6 +42,13 @@ for (int[] interval : intervals) {
 ```java
  return merged.toArray(new int[merged.size()][]);
  ```
+# Convert all keys of map to int array (mapToInt & toArray)
+```java
+
+        Integer[] uniqueNumber = map.keySet().toArray(Integer[] :: new); // convert object array to INteger array
+        int[] uniqueNumber = map.keySet().stream().mapToInt(Integer::intValue).toArray();
+```
+
 # Convert set to list 
 ```java
   Set<List<Integer>> set = new HashSet<>();
