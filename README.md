@@ -20,7 +20,9 @@ Arrays.sort(intervals, (a, b) -> {
 
 
 # LinkedList
+```
 LinkedList<int[]> merged = new LinkedList<>();
+```
 
 ```java
 for (int[] interval : intervals) {
@@ -37,7 +39,7 @@ for (int[] interval : intervals) {
 }
 
 ```
-# return element
+# return Array from linkedlist
 ```java
  return merged.toArray(new int[merged.size()][]);
  ```
