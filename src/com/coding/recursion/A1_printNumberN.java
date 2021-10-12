@@ -24,7 +24,6 @@ public class A1_printNumberN {
         System.out.println(n);
         //hypothesis
         printNumber(n-1);
-
     }
 
     public static void main(String[] args) {
@@ -34,4 +33,5 @@ public class A1_printNumberN {
         System.out.println("REVERSE NUKBER :");
         obj.printReverseNumber(n);
     }
+
 }

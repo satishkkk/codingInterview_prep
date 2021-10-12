@@ -12,15 +12,15 @@ public class CodeSignalDataBrix {
         
         while(sb.length() !=0){
             if(sb.indexOf("W")!=-1){
-                sb.replace(sb.indexOf("W"),sb.indexOf("W"),"");
+                sb.replace(sb.indexOf("W"),sb.indexOf("W")+1,"");
                 out.append("W");
             }
             if(sb.indexOf("D")!=-1){
-                sb.replace(sb.indexOf("D"),sb.indexOf("D"),"");
+                sb.replace(sb.indexOf("D"),sb.indexOf("D")+1,"");
                 out.append("D");
             }
             if(sb.indexOf("T")!=-1){
-                sb.replace(sb.indexOf("T"),sb.indexOf("T"),"");
+                sb.replace(sb.indexOf("T"),sb.indexOf("T")+1,"");
                 out.append("T");
             }
         }

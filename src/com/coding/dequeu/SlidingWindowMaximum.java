@@ -14,7 +14,6 @@ public class SlidingWindowMaximum {
 //        maxSlidingWindow(nums,k);//O(N*K)
         int ans[] = maxSlidingWindowOptimize(nums,k);
         Arrays.stream(ans).forEach(System.out :: println);
-
     }
 
     public static int[] maxSlidingWindowOptimize(int[] nums, int k){
