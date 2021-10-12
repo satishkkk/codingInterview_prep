@@ -60,7 +60,7 @@ for (int[] interval : intervals) {
       int n = subsets.size();
       for (int i = 0; i < n; i++) {
         List<Integer> set = new ArrayList<>(subsets.get(i)); // deep copy
-        List<Integer> set = subsets.get(i); // shallow copy
+        //List<Integer> set = subsets.get(i); // shallow copy
         set.add(currentNumber);
         subsets.add(set);
       }
