@@ -50,7 +50,7 @@ for (int[] interval : intervals) {
 ```
 
 
-#deep copy vs shallow copy
+# deep copy vs shallow copy
 ```java
  public static List<List<Integer>> findSubsets(int[] nums) {
     List<List<Integer>> subsets = new ArrayList<>();
