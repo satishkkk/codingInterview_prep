@@ -3,7 +3,7 @@ frequently asked coding questions with solution
 
 
 # Custom Sorting (Integer.compare(a,b))
-##Integer.compare(a[0], b[0])
+## Integer.compare(a[0], b[0])
 ```java
 int[][] intervals = {{1,3},{8,10},{2,6},{15,18}};
 Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0])); 
