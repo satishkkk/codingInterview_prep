@@ -44,8 +44,13 @@ for (int[] interval : intervals) {
  ```
 # Convert set to list 
 ```java
-  Set<List<Integer>> out = new HashSet<>();
-  return out.stream().collect(Collectors.toList());  
+  Set<List<Integer>> set = new HashSet<>();
+  return set.stream().collect(Collectors.toList());  
+  //OR
+  List<List<Integer>> list = new ArrayList<>(set); // pass in constructor
+  // OR
+  List<List<Integer>> list = new ArrayList<>(set);
+  list.addAll(set);
 ```
 
 
