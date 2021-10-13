@@ -20,6 +20,19 @@ Arrays.sort(intervals, (a, b) -> {
 });
 ```
 
+## Collections sort
+```java
+ArrayList<Integer> list = new ArrayList<>(Arrays.asList(1,3,2));
+// in place sorting
+Collection.sort(list);
+Collections.sort(list,Collections.reverseOrder());
+Collections.sort(list , customComparator); 
+
+OR
+// you have to store in another list
+List<Integer> out = list.stream().sorted().collect(Collectors.toList()); 
+List<Integer> out = list.stream().sorted(Collections.reverseOrder()).collect(Collectors.toList());
+```
 
 # LinkedList
 ```java
