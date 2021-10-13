@@ -113,7 +113,7 @@ There is something else about the behavior of toArray(...) method you must under
 
 # convert string to char stream 
 ```java 
-
+String digits = "23"
 Integer[] digitsArray = digits.chars()
         .mapToObj(i->Character.getNumericValue(i))
         .toArray(Integer[]::new);
