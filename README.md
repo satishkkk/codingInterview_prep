@@ -110,3 +110,11 @@ There is something else about the behavior of toArray(...) method you must under
   }
 
 ```
+
+# convert string to char stream 
+```java 
+
+Integer[] digitsArray = digits.chars()
+        .mapToObj(i->Character.getNumericValue(i))
+        .toArray(Integer[]::new);
+```
