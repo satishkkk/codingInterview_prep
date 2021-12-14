@@ -5,14 +5,18 @@ import java.util.Arrays;
 import java.util.List;
 
 public class A3_PermutationOFList {
+    static ArrayList<ArrayList<Integer>> mr = new ArrayList<>();
     public static void main(String[] args) {
 
-        ArrayList<Integer> a = new ArrayList<>(Arrays.asList(1));
+        ArrayList<Integer> a = new ArrayList<>(Arrays.asList(1,2,3));
 //        ArrayList<ArrayList<Integer>> out = permute(a);
 //        out.stream().forEach(p-> p.stream().forEach(System.out::println));
         ArrayList<Integer> z = new ArrayList<>();
-        permute1(a,z);
-        System.out.println(mr.size());
+//        permute1(a,z);
+//        System.out.println(mr);
+
+        String s = "abc";
+        permuteWithSwap(s,0,s.length()-1);
     }
 
 
@@ -40,16 +44,14 @@ public class A3_PermutationOFList {
         return mr;
     }
 
-    static ArrayList<ArrayList<Integer>> mr = new ArrayList<>();
-    public static void permute1(ArrayList<Integer> in, ArrayList<Integer> out) {
 
+    public static void permute1(ArrayList<Integer> in, ArrayList<Integer> out) {
         if(in.size()==1){
             ArrayList<Integer> s= new ArrayList<>(out);
             s.add(in.get(0));
             mr.add(s);
             return;
         }
-
         for(int i=0 ;i< in.size();i++){
             ArrayList<Integer> a =new ArrayList<>(in);
             ArrayList<Integer> b =new ArrayList<>(out);
@@ -57,8 +59,31 @@ public class A3_PermutationOFList {
             a.remove(i);
             permute1(a,b);
         }
-
     }
 
+//    ------------------
+private static void permuteWithSwap(String str, int l, int r)
+{
+    if (l == r)
+        System.out.println(str);
+    else
+    {
+        for (int i = l; i <= r; i++)
+        {
+            str = swap(str,l,i);
+            permuteWithSwap(str, l+1, r);
+//            str = swap(str,l,i);
+        }
+    }
+}
+    public static String swap(String a, int i, int j)
+    {
+        char temp;
+        char[] charArray = a.toCharArray();
+        temp = charArray[i] ;
+        charArray[i] = charArray[j];
+        charArray[j] = temp;
+        return String.valueOf(charArray);
+    }
 }
 
