@@ -22,6 +22,29 @@ public class TreeTraversalIterative {
         root.right.right = new TreeNode(7);
         int[] out = inorderTraversal(root);
         Arrays.stream(out).forEach(System.out::println);
+
+
+    }
+
+    public int[] preorderTraversal(TreeNode A) { // VISIT | LEFT | RIGHT
+        if(A == null) return new int[]{};
+
+        List<Integer> list = new ArrayList<Integer>();
+        TreeNode root =A;
+        Stack<TreeNode> stack = new Stack<>();
+
+        while(root!= null || !stack.isEmpty()){
+            if(root!=null){
+                list.add(root.val);//visit node
+                stack.push(root);
+                root=root.left;//iterate to until left
+            }else{// traverse on right node
+                root = stack.peek();
+                stack.pop();
+                root=root.right;
+            }
+        }
+        return list.stream().mapToInt(t->t).toArray();
     }
 
 
@@ -41,27 +64,6 @@ public class TreeTraversalIterative {
                 list.add(root.val); //visit node
                 stack.pop();
                 root=root.right; // traverse right
-            }
-        }
-        return list.stream().mapToInt(t->t).toArray();
-    }
-
-    public int[] preorderTraversal(TreeNode A) { // VISIT | LEFT | RIGHT
-        if(A == null) return new int[]{};
-
-        List<Integer> list = new ArrayList<Integer>();
-        TreeNode root =A;
-        Stack<TreeNode> stack = new Stack<>();
-
-        while(root!= null || !stack.isEmpty()){
-            if(root!=null){
-                list.add(root.val);//visit node
-                stack.push(root);
-                root=root.left;//iterate to until left
-            }else{// traverse on right node
-                root = stack.peek();
-                stack.pop();
-                root=root.right;
             }
         }
         return list.stream().mapToInt(t->t).toArray();

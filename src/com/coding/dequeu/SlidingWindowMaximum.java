@@ -46,6 +46,7 @@ public class SlidingWindowMaximum {
 
     public static int[] maxSlidingWindow(int[] nums, int k) {
         PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a, b) -> b-a);
+
         int ans[] = new int[nums.length-k+1];
         int left = 0;
         for(int i=0;i<k;i++){
