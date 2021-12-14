@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a574d9be-b422-43e7-8086-5107d822738e" name="Default Changelist" comment="16_09 : commit from src">
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
+    <list default="true" id="a574d9be-b422-43e7-8086-5107d822738e" name="Default Changelist" comment="14_12 : commit from main lap">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/Factory/AMazon1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/Factory/Amazon2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/Factory/Test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/PatkarSir_core/LRUCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/LRUCache.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/divideby3.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/divideby33.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/interviewBitScaler/amaxon2/Main.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -580,6 +587,7 @@
       <workItem from="1637602660577" duration="768000" />
       <workItem from="1638670920691" duration="591000" />
       <workItem from="1639268335335" duration="853000" />
+      <workItem from="1639496793746" duration="677000" />
     </task>
     <task id="LOCAL-00001" summary="01_09 : September leetcode challange day1">
       <created>1598979310615</created>
@@ -700,7 +708,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639268478709</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="14_12 : commit from main lap">
+      <created>1639496896463</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1639496896463</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TodoView">
@@ -812,7 +827,8 @@
     <MESSAGE value="06_09 : sync" />
     <MESSAGE value="16_09 : sync" />
     <MESSAGE value="16_09 : commit from src" />
-    <option name="LAST_COMMIT_MESSAGE" value="16_09 : commit from src" />
+    <MESSAGE value="14_12 : commit from main lap" />
+    <option name="LAST_COMMIT_MESSAGE" value="14_12 : commit from main lap" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1297,27 +1313,27 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/interviewBitScaler/Lecture7_Recursion/A3_PermutationOFList.java</url>
-          <line>14</line>
+          <line>15</line>
           <option name="timeStamp" value="303" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/interviewBitScaler/Lecture7_Recursion/A3_PermutationOFList.java</url>
-          <line>13</line>
+          <line>14</line>
           <option name="timeStamp" value="304" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/interviewBitScaler/Lecture7_Recursion/A3_PermutationOFList.java</url>
-          <line>19</line>
+          <line>23</line>
           <option name="timeStamp" value="305" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/interviewBitScaler/Lecture7_Recursion/A3_PermutationOFList.java</url>
-          <line>27</line>
+          <line>31</line>
           <option name="timeStamp" value="306" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/interviewBitScaler/Lecture7_Recursion/A3_PermutationOFList.java</url>
-          <line>45</line>
+          <line>48</line>
           <option name="timeStamp" value="307" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -1980,12 +1996,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/company/fb/MergeIntervals_leetcode56.java</url>
-          <line>14</line>
+          <line>10</line>
           <option name="timeStamp" value="610" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/company/fb/MergeIntervals_leetcode56.java</url>
-          <line>65</line>
+          <line>28</line>
           <option name="timeStamp" value="611" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
