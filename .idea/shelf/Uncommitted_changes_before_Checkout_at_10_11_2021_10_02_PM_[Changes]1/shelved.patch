@@ -1,0 +1,1500 @@
+Index: src/com/coding/recursion/A2_fctorial.java
+===================================================================
+diff --git a/src/com/coding/recursion/A2_fctorial.java b/src/com/coding/recursion/A2_fctorial.java
+deleted file mode 100644
+--- a/src/com/coding/recursion/A2_fctorial.java	(revision 57c5d91359c3dc0c4424c18deec5cf7a360bb9b2)
++++ /dev/null	(revision 57c5d91359c3dc0c4424c18deec5cf7a360bb9b2)
+@@ -1,20 +0,0 @@
+-package com.coding.recursion;
+-
+-public class A2_fctorial {
+-
+-    int factorial(int n){
+-        if(n==0){
+-            return 1;
+-        }
+-
+-        return n*factorial(n-1);
+-
+-    }
+-
+-    public static void main(String[] args) {
+-        A2_fctorial obj = new A2_fctorial();
+-        int n =7;
+-        System.out.println(obj.factorial(n));
+-    }
+-
+-}
+Index: src/com/java8_streamsAndLambda/Streamsort.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/com/java8_streamsAndLambda/Streamsort.java b/src/com/java8_streamsAndLambda/Streamsort.java
+new file mode 100644
+--- /dev/null	(date 1632475878047)
++++ b/src/com/java8_streamsAndLambda/Streamsort.java	(date 1632475878047)
+@@ -0,0 +1,56 @@
++package com.java8_streamsAndLambda;
++
++import com.interviewBitScaler.Trees.Traversal.InOrderRecursiveWithIntArray;
++
++import java.util.*;
++import java.util.stream.Collectors;
++
++public class Streamsort {
++    static Map<Integer,List<Integer>> map = new HashMap<>();
++    public static void main(String[] args) {
++//        [3,1,4,0,2,2]
++        TreeNode root = new TreeNode(3);
++        root.left = new TreeNode(1);
++        root.right = new TreeNode(4);
++        root.left.left = new TreeNode(0);
++        root.left.right = new TreeNode(2);
++        root.right.left = new TreeNode(2);
++        List<List<Integer>> ans = verticalTraversal(root);
++        ans.forEach(System.out::println);
++    }
++
++    public static List<List<Integer>> verticalTraversal(TreeNode root) {
++        List<List<Integer>> ans  = new ArrayList<>();
++        verticalTraversalUtil(root,0);
++        map.entrySet().stream()
++                .sorted(Map.Entry.comparingByKey())
++                .forEach(list -> ans.add(list.getValue()));
++        for(List<Integer> l : ans){
++            Collections.sort(l);
++        }
++        return ans;
++    }
++
++    public static void verticalTraversalUtil(TreeNode root ,int distance){
++        if(root == null) return;
++
++        if(!map.containsKey(distance)){
++            map.put(distance,new ArrayList<Integer>());
++        }
++        map.get(distance).add(root.val);
++        verticalTraversalUtil(root.left,distance-1);
++        verticalTraversalUtil(root.right,distance+1);
++    }
++
++    static class TreeNode {
++        int val;
++        TreeNode left;
++        TreeNode right;
++
++        TreeNode(int v) {
++            this.val = v;
++        }
++    }
++}
++
++
+Index: src/com/coding/strings/CodeSignalDataBrix.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.coding.strings;\r\n\r\npublic class CodeSignalDataBrix {\r\n    public static void main(String[] args) {\r\n        String out = getOutput(\"WWDTDTDTWW\");\r\n        System.out.println(out);\r\n    }\r\n    \r\n    static String getOutput(String s){\r\n        StringBuilder out = new StringBuilder();\r\n        StringBuilder sb = new StringBuilder(s);\r\n        \r\n        while(sb.length() !=0){\r\n            if(sb.indexOf(\"W\")!=-1){\r\n                sb.replace(sb.indexOf(\"W\"),sb.indexOf(\"W\"),\"\");\r\n                out.append(\"W\");\r\n            }\r\n            if(sb.indexOf(\"D\")!=-1){\r\n                sb.replace(sb.indexOf(\"D\"),sb.indexOf(\"D\"),\"\");\r\n                out.append(\"D\");\r\n            }\r\n            if(sb.indexOf(\"T\")!=-1){\r\n                sb.replace(sb.indexOf(\"T\"),sb.indexOf(\"T\"),\"\");\r\n                out.append(\"T\");\r\n            }\r\n        }\r\n        return out.toString();\r\n    }\r\n    \r\n    \r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/com/coding/strings/CodeSignalDataBrix.java b/src/com/coding/strings/CodeSignalDataBrix.java
+--- a/src/com/coding/strings/CodeSignalDataBrix.java	(revision 57c5d91359c3dc0c4424c18deec5cf7a360bb9b2)
++++ b/src/com/coding/strings/CodeSignalDataBrix.java	(date 1633911491597)
+@@ -12,15 +12,15 @@
+         
+         while(sb.length() !=0){
+             if(sb.indexOf("W")!=-1){
+-                sb.replace(sb.indexOf("W"),sb.indexOf("W"),"");
++                sb.replace(sb.indexOf("W"),sb.indexOf("W")+1,"");
+                 out.append("W");
+             }
+             if(sb.indexOf("D")!=-1){
+-                sb.replace(sb.indexOf("D"),sb.indexOf("D"),"");
++                sb.replace(sb.indexOf("D"),sb.indexOf("D")+1,"");
+                 out.append("D");
+             }
+             if(sb.indexOf("T")!=-1){
+-                sb.replace(sb.indexOf("T"),sb.indexOf("T"),"");
++                sb.replace(sb.indexOf("T"),sb.indexOf("T")+1,"");
+                 out.append("T");
+             }
+         }
+Index: src/com/coding/recursion/TailRecursionSolve.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/com/coding/recursion/TailRecursionSolve.java b/src/com/coding/recursion/TailRecursionSolve.java
+new file mode 100644
+--- /dev/null	(date 1633934476766)
++++ b/src/com/coding/recursion/TailRecursionSolve.java	(date 1633934476766)
+@@ -0,0 +1,23 @@
++package com.coding.recursion;
++
++public class TailRecursionSolve {
++    public static void main(String[] args) {
++        int n = solve(5);
++        System.out.println("n = "+n);
++
++        int k = tailSolve(5,0);
++        System.out.println("k = "+k);
++    }
++
++    static int solve(int n){
++        if(n==0) return 0;
++        System.out.println(n);
++        return n+solve(n-1);
++    }
++
++    static int tailSolve(int n,int sum){
++        if(n==0) return sum;
++        System.out.println(n);
++        return tailSolve(n-1,sum+n);
++    }
++}
+Index: src/com/leetcode/AmazonTOP/CountBinaryString.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/com/leetcode/AmazonTOP/CountBinaryString.java b/src/com/leetcode/AmazonTOP/CountBinaryString.java
+new file mode 100644
+--- /dev/null	(date 1632360829385)
++++ b/src/com/leetcode/AmazonTOP/CountBinaryString.java	(date 1632360829385)
+@@ -0,0 +1,23 @@
++package com.leetcode.AmazonTOP;
++
++public class CountBinaryString {
++    public static void main(String[] args) {
++        System.out.println(countBinarySubstrings("00110"));
++    }
++//10101
++    public static int countBinarySubstrings(String s) {
++        int count=0,prev=1,curr =1;
++
++        for(int i=1;i<s.length();i++){
++            if(s.charAt(i-1)==s.charAt(i)){
++                curr++;
++            }else{
++                count+= Math.min(curr,prev);
++                prev = curr;
++                curr=1;
++            }
++        }
++        return count;
++    }
++
++}
+Index: out/production/codingInterview_prep/com/PatkarSir_core/project/hello2.bat
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/out/production/codingInterview_prep/com/PatkarSir_core/project/hello2.bat b/out/production/codingInterview_prep/com/PatkarSir_core/project/hello2.bat
+new file mode 100644
+--- /dev/null	(date 1629144620861)
++++ b/out/production/codingInterview_prep/com/PatkarSir_core/project/hello2.bat	(date 1629144620861)
+@@ -0,0 +1,20 @@
++@echo off
++echo 2.1
++for /F "tokens=2" %%i in ('date /t') do set mydate=%%i
++set mytime=%time%
++echo Current time from2.1 %mydate%:%mytime%
++
++TIMEOUT  10
++echo 2.2
++for /F "tokens=2" %%i in ('date /t') do set mydate=%%i
++set mytime=%time%
++echo Current time from2.2 %mydate%:%mytime%
++
++TIMEOUT  10
++
++echo 2.3
++for /F "tokens=2" %%i in ('date /t') do set mydate=%%i
++set mytime=%time%
++echo Current time from2.3 %mydate%:%mytime%
++
++TIMEOUT  10
+Index: out/production/codingInterview_prep/com/PatkarSir_core/TrickyQuestions/UsefulLinks
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/out/production/codingInterview_prep/com/PatkarSir_core/TrickyQuestions/UsefulLinks b/out/production/codingInterview_prep/com/PatkarSir_core/TrickyQuestions/UsefulLinks
+new file mode 100644
+--- /dev/null	(date 1629144620492)
++++ b/out/production/codingInterview_prep/com/PatkarSir_core/TrickyQuestions/UsefulLinks	(date 1629144620492)
+@@ -0,0 +1,1 @@
++1. Medium article  : https://levelup.gitconnected.com/tricky-java-interview-questions-cfc546fd03ab
+\ No newline at end of file
+Index: out/production/codingInterview_prep/com/PatkarSir_core/project/log1.txt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/out/production/codingInterview_prep/com/PatkarSir_core/project/log1.txt b/out/production/codingInterview_prep/com/PatkarSir_core/project/log1.txt
+new file mode 100644
+--- /dev/null	(date 1629144620864)
++++ b/out/production/codingInterview_prep/com/PatkarSir_core/project/log1.txt	(date 1629144620864)
+@@ -0,0 +1,18 @@
++1.1
++2.1
++Current time from1.1 :23:18:14.78
++Current time from2.1 :23:18:14.78
++ERROR: Input redirection is not supported, exiting the process immediately.
++ERROR: Input redirection is not supported, exiting the process immediately.
++1.2
++2.2
++Current time from1.2 :23:18:14.81
++Current time from2.2 :23:18:14.81
++ERROR: Input redirection is not supported, exiting the process immediately.
++ERROR: Input redirection is not supported, exiting the process immediately.
++1.3
++2.3
++Current time from1.3 :23:18:14.83
++Current time from2.3 :23:18:14.84
++ERROR: Input redirection is not supported, exiting the process immediately.
++ERROR: Input redirection is not supported, exiting the process immediately.
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+new file mode 100644
+--- /dev/null	(date 1634014782265)
++++ b/.idea/workspace.xml	(date 1634014782265)
+@@ -0,0 +1,959 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ChangeListManager">
++    <list default="true" id="57d39da4-6a0b-4d58-bc2c-a6e29d965436" name="Changes" comment="22_09 : Restructureer">
++      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/A1_PassByvalueJAVAWAY.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/Anatomy/C1.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/Anatomy/C2.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/Anatomy/C2_private.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/Anatomy/C3_private.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/Anatomy/Constructor.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/Anatomy/Point.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/Anatomy/Point1.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/Anatomy/Point_class.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/Anatomy/staticWithoutmain.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/C1.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/C2.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/Child.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/ClassComposition/Main.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/ClassComposition/Point.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/ClassComposition/Rectangle.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/ClassComposition/Segment.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/LRUCache.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/Parent.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/StaticOverriding.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/StringComparing.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/TrickyQuestions/IntegerCaching.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/TrickyQuestions/OverridingNull.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/TrickyQuestions/UsefulLinks" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/TrickyQuestions/p1/C1.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/TrickyQuestions/p1/C2.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/TrickyQuestions/p2/C3.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/TrickyQuestions/p2/p3/C4.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/abstractANDFinalclass/AnstarctAndFinal.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/abstractANDFinalclass/C1.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/abstractANDFinalclass/C2.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/abstractANDFinalclass/constructor/C1.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/abstractANDFinalclass/constructor/C2.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/abstractANDFinalclass/constructor/C3.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/abstractANDFinalclass/constructor/constructorLearning.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/arrays/LearnArray.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/constructor/MainC.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/constructor/Point.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/constructor/static_Instance_block.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/constructor/test.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/exceptionhandling/C1.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/exceptionhandling/C11.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/exceptionhandling/C12.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/exceptionhandling/C2.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/exceptionhandling/C31.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/exceptionhandling/C32.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/exceptionhandling/C41.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/exceptionhandling/C42.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/exceptionhandling/C61.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/exceptionhandling/C62.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/exceptionhandling/C71.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/exceptionhandling/C72.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/exceptionhandling/Exceptionhandling.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/exceptionhandling/Finally.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/exceptionhandling/GeneralException.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/exceptionhandling/NestedTry.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/exceptionhandling/escapeCondition.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/exceptionhandling/multipleCatch.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/exceptionhandling/userdefinedexception/C1.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/exceptionhandling/userdefinedexception/C11.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/exceptionhandling/userdefinedexception/C12.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/exceptionhandling/userdefinedexception/C2.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/exceptionhandling/userdefinedexception/C31.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/exceptionhandling/userdefinedexception/C32.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/exceptionhandling/userdefinedexception/CheckedExceptions.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/exceptionhandling/userdefinedexception/E1.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/exceptionhandling/userdefinedexception/E11.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/exceptionhandling/userdefinedexception/E12.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/exceptionhandling/userdefinedexception/E2.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/exceptionhandling/userdefinedexception/E3.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/exceptionhandling/userdefinedexception/E31.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/exceptionhandling/userdefinedexception/E32.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/exceptionhandling/userdefinedexception/E4.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/exceptionhandling/userdefinedexception/E5.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/exceptionhandling/userdefinedexception/Exceptionhandling.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/exceptionhandling/userdefinedexception/I1.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/exceptionhandling/userdefinedexception/LearningOverridingThrows.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/immutable/Explore/Age.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/immutable/Explore/ImmutableStudent.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/immutable/Explore/Main.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/immutable/Explore/MutableStudent.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/immutable/FinalClassExample.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/inheritance/A.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/inheritance/B.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/inheritance/C.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/inheritance/C1.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/inheritance/C2.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/inheritance/Child.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/inheritance/Child1.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/inheritance/ChildReturnType.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/inheritance/Explore.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/inheritance/InheritanceCompositionChallenge$Character.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/inheritance/InheritanceCompositionChallenge$Homer.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/inheritance/InheritanceCompositionChallenge$Lung.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/inheritance/InheritanceCompositionChallenge.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/inheritance/LiskovsPrincipal.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/inheritance/Parent.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/inheritance/Parent1.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/inheritance/ParentReturnType.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/inheritance/StaticVariableHiding.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/inheritance/Test1.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/inheritance/Test2.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/inheritance/jpInterviewExplore.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/inheritance/overridingExperiment.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/innerclass/A.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/innerclass/B.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/innerclass/Explore.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/innerclass/Explore1.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/innerclass/Explore2.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/innerclass/Explore3.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/innerclass/Explore4$1.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/innerclass/Explore4$2.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/innerclass/Explore4.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/innerclass/Outer$Inner.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/innerclass/Outer.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/innerclass/Outer1$Inner1.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/innerclass/Outer1.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/innerclass/Outer3$1Inner3.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/innerclass/Outer3$1Inner4.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/innerclass/Outer3$1Inner5.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/innerclass/Outer3.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/innerclass/Outer4$Inner4.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/innerclass/Outer4.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/java8/inheritanceofdefaultmethod/Explore.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/java8/inheritanceofdefaultmethod/Left.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/java8/inheritanceofdefaultmethod/Right.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/java8/inheritanceofdefaultmethod/StaticAndDefaultInInterface.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/javaIO/FileRead.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/javaIO/FileWrite.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/javaIO/ReadData.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/javapassbyvalue/Explore.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/javapassbyvalue/ExploreCollectionArgs.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/javapassbyvalue/ExploreWrapperArgument.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/jdbc/InsertData.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/jdbc/PreparedStatment.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/jdbc/RetriveData.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/lambda/Explore$1.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/lambda/Explore$2.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/lambda/Explore.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/lambda/Explore1$1.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/lambda/Explore1.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/lambda/I1.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/lambda/I2.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/lambda/I3.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/lambda/I4.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/lambda/Message.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/lambda/MyClass.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/linkedlist/AnotherInterface.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/linkedlist/Node.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/linkedlist/Stack1.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/linkedlist/Stack2.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/linkedlist/StackInterface.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/linkedlist/StackMain.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/metaprogramming/Explore.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/metaprogramming/ExploreGetSuperClass.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/myservletframework/MyGenericServlet.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/myservletframework/MyHTTPServlet.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/myservletframework/MyRequest.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/myservletframework/MyResponse.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/myservletframework/MyServlet.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/myservletframework/MyServletComponent.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/myservletframework/MyServletContainerDemo.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/project/SwingJoption/JoptionTutorial_takestringInput.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/project/SwingJoption/Joption_Calculator.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/project/batRunner$Task.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/project/batRunner.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/project/hello1.bat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/project/hello2.bat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/project/log1.txt" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/serializationAndCloning/C1.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/serializationAndCloning/LearningSerialization.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/serializationAndCloning/ObjectGraph/C11.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/serializationAndCloning/ObjectGraph/C12.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/serializationAndCloning/ObjectGraph/LearningSerialization1.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/simpleServer/L1.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/simpleServer/LearningSwing.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/simpleServer/Server.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/simpleServer/echoServer/EchoClient.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/simpleServer/echoServer/EchoServer.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/simpleServer/echoServer/L1.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/stack/Main.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/stack/Stack.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/stack/StackImpl.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/staticExplore.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/streams/IntStreamDemo.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/stringExample/StringMain.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/stringExample/StringSubstring.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/swingGUI/Explore$1L1.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/swingGUI/Explore.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/Explore.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/LearningThreadUsingExtends.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/LearningThreadUsinglambda$1.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/LearningThreadUsinglambda.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/LearningThreadsUsingRunnable.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/ThreadWorkAssignment.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/WhatsappGroupDesign_upgrade2/Client.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/WhatsappGroupDesign_upgrade2/Conversation.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/WhatsappGroupDesign_upgrade2/MessageDispatcher.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/WhatsappGroupDesign_upgrade2/MessageQueue.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/WhatsappGroupDesign_upgrade2/Reader.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/WhatsappGroupDesign_upgrade2/Server.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/Work1.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/Work11.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/Work12.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/Work2.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/monitor/a1localvariable/Bike.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/monitor/a1localvariable/Car.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/monitor/a1localvariable/LearningMonitorsLocalVariable.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/monitor/a1localvariable/TestBed.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/monitor/a2staticvariable/Bike.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/monitor/a2staticvariable/Car.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/monitor/a2staticvariable/LearningMonitorsStaticVariable.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/monitor/a2staticvariable/TestBed.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/monitor/a3synchronizedblock/Bike.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/monitor/a3synchronizedblock/Car.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/monitor/a3synchronizedblock/LearningMonitorSynchronized.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/monitor/a3synchronizedblock/Regulator.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/monitor/a3synchronizedblock/TestBed.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/monitor/a4multiplesynchrozedblocks/Bike.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/monitor/a4multiplesynchrozedblocks/Car.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/monitor/a4multiplesynchrozedblocks/LearningMonitorMultipleSynchronizedBlocks.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/monitor/a4multiplesynchrozedblocks/Regulator.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/monitor/a4multiplesynchrozedblocks/TestBed.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/monitor/a5overlocking/Bike.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/monitor/a5overlocking/Car.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/monitor/a5overlocking/LearningMonitorToControlInstanceVariable.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/monitor/a5overlocking/RacingCircuit.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/monitor/a5overlocking/Regulator.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/monitor/a6noinference/Bike.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/monitor/a6noinference/Car.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/monitor/a6noinference/LearningMonitorNoInference.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/monitor/a6noinference/Regulator.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/monitor/a6noinference/TestBed.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/monitor/a7InstanceMonitor/Bike.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/monitor/a7InstanceMonitor/Car.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/monitor/a7InstanceMonitor/LearningMonitorInstanceMonitor.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/monitor/a7InstanceMonitor/Regulator.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/monitor/a7InstanceMonitor/TestBed.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/monitor/a8SynchronizedMethod/Bike.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/monitor/a8SynchronizedMethod/Car.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/monitor/a8SynchronizedMethod/LearningSynchronizedMthod.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/monitor/a8SynchronizedMethod/Regulator.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/monitor/a8SynchronizedMethod/TestBed.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/whatsapp/Client.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/whatsapp/Conversation.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/whatsapp/L1.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/whatsapp/Server.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/whatsappGroupDesign/ChatListener.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/whatsappGroupDesign/ConcurrentClient1.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/whatsappGroupDesign/ConcurrentServer1.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/whatsappGroupDesign/Conversation1.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/whatsappclientserverEchoConcurrentServer/Client.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/whatsappclientserverEchoConcurrentServer/Conversation.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/whatsappclientserverEchoConcurrentServer/L1.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/PatkarSir_core/thread/whatsappclientserverEchoConcurrentServer/Server.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/DP1/A1Fibonacci.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/DP1/A2Alphacode.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/DP1/A3LongestIncreasingSubsequence.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/DP1/A4BitonicSubsequence.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/DP1/A5StairCaseproblem.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/DP1/A6CoinChangeProblem.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/DP1/A7CoinChangeMinimumNumberOfCoin.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/DP3/A3_CoinSumInfinite.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/DP3/LongestPalindromicSubsequence.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/DP3/PatternMatching.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/DP3/Patternmatching2.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/DP3/Result.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/Explore.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/Searching/binarysearch/ChefRestaurant.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/Searching/binarysearch/FindFirstOccurenceOfElement.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/Searching/binarysearch/Range.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/Searching/binarysearch/findByCHance/AggressiveCow.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/Searching/binarysearch/findByCHance/DistributeCandies.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/Searching/stl.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/Stack/A1_FindNearestGreterToRIght.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/Stack/A2_FindNearestGreaterToLeft.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/Stack/A3_FindNearestSmallerToLeft.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/Stack/A4_FindNearestSmallerToRight.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/Stack/A5_StockSpanProblem.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/Stack/A6_MaximumAreaOfHistogram.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/Stack/A6_MaximumAreaOfHistogram_other.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/Stack/Histogram.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/Stack/StockPrice.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/Stack/testA1.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/array/Matrix/RotateMatrix.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/array/Matrix/TransposeMatrix.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/backtracking/A5PermutationOfString.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/backtracking/NQueenProblem.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/backtracking/RatInAMaze.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/codingninja/DuplicateInArray.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/codingninja/FindUniqueElement.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/codingninja/FirstNonRepeatingCharacter.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/codingninja/LongestConsecutiveSequence.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/codingninja/PermutationAndPalindrome.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/codingninja/RemoveDuplicates.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/codingninja/ThreeSum.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/codingninja/WarmReception.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/codingninja/codechef/FastScanner.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/codingninja/codechef/Main.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/codingninja/codechef/Main1.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/codingninja/codechef/inputOutputHussainset/FastScanner.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/codingninja/codechef/inputOutputHussainset/a1_hussainSet_COOK82C_usingFAstScannner2_MOSTOPTIMAL$Reader.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/codingninja/codechef/inputOutputHussainset/a1_hussainSet_COOK82C_usingFAstScannner2_MOSTOPTIMAL.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/codingninja/codechef/inputOutputHussainset/hussainSet_COOK82C.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/codingninja/codechef/inputOutputHussainset/hussainSet_COOK82C_MySol.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/codingninja/codechef/inputOutputHussainset/hussainSet_COOK82C_usingFAstScannner.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/codingninja/codechef/inputOutputHussainset/hussainSet_COOK82C_usingStringTokenizer.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/codingninja/codeforces/BalancedParanthesisSpecialCaseCodeFOrce.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/codingninja/rotateArray.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/codingninja/votersMain.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/dequeu/SlidingWindowMaximum.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/dequeu/Starter.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/list/A1_ExploreArrayList_Basic.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/priorityQueue/ByAmount.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/priorityQueue/kikstart.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/recursion/A1_printNumberN.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/recursion/A2_fctorial.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/recursion/A3_ReverseString_fibonaci.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/recursion/CheckNumberIsPresent.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/recursion/Fibonaci.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/recursion/TailRecursionSolve.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/recursion/advance/A1subsequenceOfString_DuplicateSubset_Recursion_Advance.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/recursion/advance/A1subsequenceOfString_Subset_Recursion_Advance.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/recursion/advance/A2ReturnKeypad$1.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/recursion/advance/A2ReturnKeypad.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/recursion/advance/A3subSequenceofStringWithoutStoring.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/recursion/advance/A4ReturnKeypadWithoutStoring$1.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/recursion/advance/A4ReturnKeypadWithoutStoring.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/recursion/advance/A5PermutationOfString.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/recursion/advance/RemoveDuplicatesRecursively.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/recursion/advance/ReplaceCharacterRecursively.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/recursion/advance/Scaler_GenerateAllCombinationOfSizeN.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/recursion/advance/removeXfromString.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/recursion/advance/test.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/recursion/factorial.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/recursion/findLength.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/recursion/findNumberOFDigit.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/recursion/lastIndex.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/recursion/multiplication.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/recursion/power.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/recursion/printN.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/recursion/scannerInput.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/recursion/test.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/sorting/A1SelectionSortMain.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/sorting/A2BubbleSortMain.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/sorting/A3InsertionSortMain.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/sorting/A4QuickSort.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/sorting/A6HeapSort.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/sorting/application/AAInversionCount.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/sorting/application/ReversePairMergeSort.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/sorting/application/SortComparator.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/sorting/application/SortElementByFrequency.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/sorting/application/SortedElementByFrequencyWithoutJava8.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/sorting/application/TellTheRank$pair.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/sorting/application/TellTheRank.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/sorting/mergesort/A5_0MergeSort.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/sorting/mergesort/A5_1MergeSortIndexBasedApproch.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/sorting/mergesort/A5_3MergersortEfficentAuxilaryArray.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/sorting/mergesort/A5_4MergeSortEffcientSpaceComplexity.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/special/algorithm/kadanesalgorithms/K_concatenation_codechef.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/special/algorithm/kadanesalgorithms/MaximumProductSubarray.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/special/algorithm/kadanesalgorithms/Mindbendingproduct.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/special/algorithm/kadanesalgorithms/largestContinuousSubsequence_kadanesAlgorithm.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/special/algorithm/stringsearch/KMPAlgorithms.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/special/algorithm/stringsearch/NaiveALgo.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/strings/AllSubString.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/strings/CodeSignalDataBrix.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/strings/DocExchangeSplitString.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/strings/RP/LearningPrimitiveTypes.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/strings/RP/ValueTypeReferenceType.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/strings/ReducedStringHackerRank.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/strings/Stringimmutability.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/strings/StrongPassword.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/tricks/DIvideLargeNumberString.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/tricks/PerformQueriesOnArray.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/coding/tricks/query.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/company/Chunk.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/company/Goldman/Intern/Goldman1.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/company/Goldman/Intern/Goldman2.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/company/Goldman/Pair.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/company/Goldman/Resources/Goldman2.1.PNG" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/company/Goldman/Resources/Goldman2.2.PNG" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/company/Goldman/Resources/goldman1.PNG" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/company/Goldman/SetExaples.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/company/Goldman/Test.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/company/Goldman/Test2.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/company/Goldman/TwosumUniquePair.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/company/Goldman/goldman1.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/company/Goldman/goldman2.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/company/Goldman/pairComparator.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/company/Internship/A1710_leetcodeMaxTruckGredy.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/company/Internship/SmallestWindowcontainingSubstring.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/company/Internship/robinhood/Test1.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/company/Main.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/company/Twitter$BinaryTreeData.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/company/Twitter$TreeNode.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/company/Twitter.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/company/divideby3.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/company/divideby33.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/company/ew" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/company/samsara/Add1.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/company/samsara/ArrayClass.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/company/samsara/ArrayClass2.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/company/samsara/Class1.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/company/samsara/RotateMatrix.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/company/samsara/Test2.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/company/samsara/TwoD_ArrayDiagonalTravrse.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/company/w.txt" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/designPattern/templatemethodpattern/GreenPiggy.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/designPattern/templatemethodpattern/Piggy.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/designPattern/templatemethodpattern/Program.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/designPattern/templatemethodpattern/RedPiggy.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/A3_AllocateBook.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/DP1/CountDecoding.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/DP1/FibDP.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/DP1/LetsParty.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/DP1/LetsParty_combination.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/DP1/LongestBalancedSubstring.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/DP1/MaxProductSubarray.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/DP1/MaxSumWithoutAdjacentElements.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/DP1/MinimumNumberOfSquares.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/DP1/StairCase.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/DP2/EditDistance.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/DP2/LongestPalindeomicSubSequence.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Graph/FirstDFS.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Graph/ValidPath$Pair.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Graph/ValidPath.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Lecture13_Sorting/BClosestPointoOrigin.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Lecture13_Sorting/MaximumUnsortedSubarray.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Lecture1_Arrays1/A0_RemoveDuplicatesFromSortedArrays.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Lecture1_Arrays1/A1_MaximumAbsoluteValue.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Lecture1_Arrays1/A2_RainWaterTrap.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Lecture1_Arrays1/A3_AddOneToNumber.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Lecture1_Arrays1/A4_MaxNonNegativeSubarray.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Lecture21_Stack1/HighestFrequencyStack.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Lecture21_Stack1/SortStack.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Lecture22_stack2/Histogram.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Lecture2_Arrays2/A1_SearchInSOrted2DMatrix.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Lecture2_Arrays2/A2_RepeatAndMissingNumberInArray.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Lecture2_Arrays2/A3_FindFirstMissingInteger.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Lecture2_Arrays2/A4_SubMatrixSumQueries.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Lecture2_Arrays2/A5_SumOFAllSubMatrix.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Lecture2_Arrays2/L581_ShortedUnsortedContinuousSubarray.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Lecture2_Arrays2/SetTest.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Lecture2_Arrays2/ThreeSum.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Lecture2_Arrays2/test.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Lecture3_Maths_GCD/A1_Euclids.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Lecture3_Maths_GCD/A2_divisorGame.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Lecture3_Maths_GCD/A3_deleteOne.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Lecture3_Maths_GCD/SwapTwoVariable.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Lecture4_BITMANIPULATION/A3_DifferentBitSumPairwise.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Lecture4_BITMANIPULATION/A5_ReverseBit.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Lecture5_BinarySearch/A1_FindFirstPeak.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Lecture5_BinarySearch/I.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Lecture5_BinarySearch/I1.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Lecture5_BinarySearch/Staircase.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Lecture5_BinarySearch/Test.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Lecture5_BinarySearch/findElementInRotatedSOrtedArray.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Lecture5_BinarySearch/rotatedSortedArray.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Lecture6_BinarySearchApplication/AggressiveCow.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Lecture6_BinarySearchApplication/AllocateBooks.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Lecture6_BinarySearchApplication/AthMagicalNumber.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Lecture6_BinarySearchApplication/PartitionPainterProblem.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Lecture6_BinarySearchApplication/smallerGoodBase.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Lecture7_Recursion/A1_test.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Lecture7_Recursion/A2_SIXLET.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Lecture7_Recursion/A3_PermutationOFList.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Lecture7_Recursion/RecursionGet/A3_PrintAllSubsequence.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Lecture7_Recursion/RecursionGet/A4_permutationOfString.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Lecture7_Recursion/RecursionGet/A5_getBoardPath.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Lecture7_Recursion/RecursionGet/A6_mazePath.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Lecture9_Searchin_2.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/LectureX1_String/BoringSubstring.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/LectureX1_String/CyclicPermutation.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/LectureX1_String/KMPApplication.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/LectureX1_String/kmp.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/LectureX1_String/reverseString.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/LectureXX_Graph1/FindPath.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/LectureXX_Graph1/Graph.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/LectureXX_Graph1/Node.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/LectureXX_Graph1/RottenOrange.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/LectureX_Hashing/A3_SortArrayInOrder.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/LectureX_Hashing/HashMaptest.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Trees/Traversal/InOrderRecursiveWithIntArray$TreeNode.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Trees/Traversal/InOrderRecursiveWithIntArray.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Trees/Traversal/TreeTraversalIterative$TreeNode.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Trees/Traversal/TreeTraversalIterative.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Trees/Traversal/Treeproblems/BalancedBinaryTree$TreeNode.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Trees/Traversal/Treeproblems/BalancedBinaryTree.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Trees/Traversal/Treeproblems/SerializeBinaryTree$TreeNode.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Trees/Traversal/Treeproblems/SerializeBinaryTree.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Trees/Traversal/Trees/BST.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Trees/Traversal/Trees/BSTApp.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Trees/Traversal/Trees/Node.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Trees/Traversal/TreetraversalRecursion$TreeNode.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Trees/Traversal/TreetraversalRecursion.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Two_Pointer/A4_Subarraywithgivensum.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Two_Pointer/P1_CountPairswhoseSumIsB.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Two_Pointer/P2_countPairWhoseDifferenceIsB.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Two_Pointer/P3_3sum.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Two_Pointer/Test.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/Two_Pointer/findminimustring.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/amaxon2/Main.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/greedy/FinishMaximumJob.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/greedy/FreeCars.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/greedy/Info.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/greedy/Info1.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/heap/KsortedArray.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/heap/ListNode.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/heap/MaxHeap.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/heap/MaxHeap1.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/heap/MinHeap.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/heap/MinHeapPriorityQueue.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/heap/application/ConnectRopes.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/heap/application/KthSmallestPrimeFactor.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/heap/application/Pair.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/heap/application/kthSmallestElementinSortedMatrix.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/heap/application/test.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/linkedlist/ListNode.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/linkedlist/Reversemton.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/others/Main.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/interviewBitScaler/others/test.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/java8_streamsAndLambda/Address.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/java8_streamsAndLambda/LamdaExpression.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/java8_streamsAndLambda/MobileNumber.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/java8_streamsAndLambda/StreamTest.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/java8_streamsAndLambda/Streamsort$TreeNode.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/java8_streamsAndLambda/Streamsort.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/java8_streamsAndLambda/Student.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/java8_streamsAndLambda/TempStudent.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/java8_streamsAndLambda/myAdd.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/java8_streamsAndLambda/myLambda.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/leetcode/AmazonTOP/CountBinaryString.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/leetcode/Array101/AddBinaryNumber.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/leetcode/Array101/CLosestTriplet.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/leetcode/Array101/Method.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/leetcode/Array101/SortSquare.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/leetcode/septemberChalange/a1_LargestTimeForGivenDigit.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/leetcode/septemberLearning/Compartor_CustomizeSorting.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/leetcode/septemberLearning/PermutattionOfString.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/leetcode/septemberLearning/RecursionSortArray.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/utility/collectionCOnversion/ArrayListExample.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/utility/collectionCOnversion/ArrayListToArray.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/utility/collectionCOnversion/CharacterArray.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/utility/collectionCOnversion/PermutationOfPalindrome.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/utility/collectionCOnversion/Sorting.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/utility/collectionCOnversion/StringReplace.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/utility/collectionCOnversion/StringSplit_domain_subdomain.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/out/production/codingInterview_prep/com/utility/collectionCOnversion/mapExamples/LinkedHashMap_Example.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/com/coding/recursion/TailRecursionSolve.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/com/company/Twitter.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/com/company/ew" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/com/company/w.txt" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/com/java8_streamsAndLambda/Streamsort.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/com/leetcode/AmazonTOP/CountBinaryString.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/com/coding/recursion/A2_fctorial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/coding/recursion/A2_fctorial.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/com/coding/strings/CodeSignalDataBrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/coding/strings/CodeSignalDataBrix.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
++    </list>
++    <option name="SHOW_DIALOG" value="false" />
++    <option name="HIGHLIGHT_CONFLICTS" value="true" />
++    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
++    <option name="LAST_RESOLUTION" value="IGNORE" />
++  </component>
++  <component name="FileTemplateManagerImpl">
++    <option name="RECENT_TEMPLATES">
++      <list>
++        <option value="Class" />
++      </list>
++    </option>
++  </component>
++  <component name="Git.Rebase.Settings">
++    <option name="NEW_BASE" value="master" />
++  </component>
++  <component name="Git.Settings">
++    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
++  </component>
++  <component name="GitSEFilterConfiguration">
++    <file-type-list>
++      <filtered-out-file-type name="LOCAL_BRANCH" />
++      <filtered-out-file-type name="REMOTE_BRANCH" />
++      <filtered-out-file-type name="TAG" />
++      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
++    </file-type-list>
++  </component>
++  <component name="ProjectId" id="1wp9QLYAQOpq2byxKFJE5V1MoUT" />
++  <component name="ProjectViewState">
++    <option name="hideEmptyMiddlePackages" value="true" />
++    <option name="showLibraryContents" value="true" />
++  </component>
++  <component name="PropertiesComponent">
++    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
++    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
++    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
++    <property name="WebServerToolWindowFactoryState" value="false" />
++    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
++    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
++  </component>
++  <component name="RunManager" selected="Application.A1subsequenceOfString_DuplicateSubset_Recursion_Advance">
++    <configuration name="A1subsequenceOfString_DuplicateSubset_Recursion_Advance" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="com.coding.recursion.advance.A1subsequenceOfString_DuplicateSubset_Recursion_Advance" />
++      <module name="codingInterview_prep" />
++      <extension name="coverage">
++        <pattern>
++          <option name="PATTERN" value="com.coding.recursion.advance.*" />
++          <option name="ENABLED" value="true" />
++        </pattern>
++      </extension>
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <configuration name="A1subsequenceOfString_Subset_Recursion_Advance" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="com.coding.recursion.advance.A1subsequenceOfString_Subset_Recursion_Advance" />
++      <module name="codingInterview_prep" />
++      <extension name="coverage">
++        <pattern>
++          <option name="PATTERN" value="com.coding.recursion.advance.*" />
++          <option name="ENABLED" value="true" />
++        </pattern>
++      </extension>
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <configuration name="Fibonaci" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="com.coding.recursion.Fibonaci" />
++      <module name="codingInterview_prep" />
++      <extension name="coverage">
++        <pattern>
++          <option name="PATTERN" value="com.coding.recursion.*" />
++          <option name="ENABLED" value="true" />
++        </pattern>
++      </extension>
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <configuration name="Scaler_GenerateAllCombinationOfSizeN" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="com.coding.recursion.advance.Scaler_GenerateAllCombinationOfSizeN" />
++      <module name="codingInterview_prep" />
++      <extension name="coverage">
++        <pattern>
++          <option name="PATTERN" value="com.coding.recursion.advance.*" />
++          <option name="ENABLED" value="true" />
++        </pattern>
++      </extension>
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <configuration name="TailRecursionSolve" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="com.coding.recursion.TailRecursionSolve" />
++      <module name="codingInterview_prep" />
++      <extension name="coverage">
++        <pattern>
++          <option name="PATTERN" value="com.coding.recursion.*" />
++          <option name="ENABLED" value="true" />
++        </pattern>
++      </extension>
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <recent_temporary>
++      <list>
++        <item itemvalue="Application.A1subsequenceOfString_DuplicateSubset_Recursion_Advance" />
++        <item itemvalue="Application.A1subsequenceOfString_Subset_Recursion_Advance" />
++        <item itemvalue="Application.Scaler_GenerateAllCombinationOfSizeN" />
++        <item itemvalue="Application.TailRecursionSolve" />
++        <item itemvalue="Application.Fibonaci" />
++      </list>
++    </recent_temporary>
++  </component>
++  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
++  <component name="TaskManager">
++    <task active="true" id="Default" summary="Default task">
++      <changelist id="57d39da4-6a0b-4d58-bc2c-a6e29d965436" name="Changes" comment="" />
++      <created>1629144649453</created>
++      <option name="number" value="Default" />
++      <option name="presentableId" value="Default" />
++      <updated>1629144649453</updated>
++      <workItem from="1629144652062" duration="1421000" />
++      <workItem from="1629319230845" duration="2247000" />
++      <workItem from="1630967926886" duration="1157000" />
++      <workItem from="1631171196332" duration="16326000" />
++      <workItem from="1631485322072" duration="1546000" />
++      <workItem from="1631640740784" duration="6497000" />
++      <workItem from="1631801222320" duration="9449000" />
++      <workItem from="1631931371089" duration="4256000" />
++      <workItem from="1632063740605" duration="2087000" />
++      <workItem from="1632252399797" duration="6767000" />
++      <workItem from="1632360432505" duration="2304000" />
++      <workItem from="1632474222909" duration="2148000" />
++      <workItem from="1632596982713" duration="7328000" />
++      <workItem from="1633806546425" duration="9033000" />
++      <workItem from="1633984368494" duration="6483000" />
++    </task>
++    <task id="LOCAL-00001" summary="06_09 : sync">
++      <created>1630968433938</created>
++      <option name="number" value="00001" />
++      <option name="presentableId" value="LOCAL-00001" />
++      <option name="project" value="LOCAL" />
++      <updated>1630968433938</updated>
++    </task>
++    <task id="LOCAL-00002" summary="16_09 : sync">
++      <created>1631838469360</created>
++      <option name="number" value="00002" />
++      <option name="presentableId" value="LOCAL-00002" />
++      <option name="project" value="LOCAL" />
++      <updated>1631838469360</updated>
++    </task>
++    <task id="LOCAL-00003" summary="16_09 : sync">
++      <created>1631858032240</created>
++      <option name="number" value="00003" />
++      <option name="presentableId" value="LOCAL-00003" />
++      <option name="project" value="LOCAL" />
++      <updated>1631858032240</updated>
++    </task>
++    <task id="LOCAL-00004" summary="22_09 : Restructureer">
++      <created>1632320437053</created>
++      <option name="number" value="00004" />
++      <option name="presentableId" value="LOCAL-00004" />
++      <option name="project" value="LOCAL" />
++      <updated>1632320437053</updated>
++    </task>
++    <task id="LOCAL-00005" summary="22_09 : Restructureer">
++      <created>1634010759079</created>
++      <option name="number" value="00005" />
++      <option name="presentableId" value="LOCAL-00005" />
++      <option name="project" value="LOCAL" />
++      <updated>1634010759079</updated>
++    </task>
++    <option name="localTasksCounter" value="6" />
++    <servers />
++  </component>
++  <component name="TypeScriptGeneratedFilesManager">
++    <option name="version" value="3" />
++  </component>
++  <component name="Vcs.Log.Tabs.Properties">
++    <option name="TAB_STATES">
++      <map>
++        <entry key="MAIN">
++          <value>
++            <State />
++          </value>
++        </entry>
++      </map>
++    </option>
++    <option name="oldMeFiltersMigrated" value="true" />
++  </component>
++  <component name="VcsManagerConfiguration">
++    <MESSAGE value="06_09 : sync" />
++    <MESSAGE value="16_09 : sync" />
++    <MESSAGE value="22_09 : Restructureer" />
++    <option name="LAST_COMMIT_MESSAGE" value="22_09 : Restructureer" />
++  </component>
++  <component name="XDebuggerManager">
++    <breakpoint-manager>
++      <breakpoints>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/com/interviewBitScaler/LectureXX_Graph1/RottenOrange.java</url>
++          <line>54</line>
++          <option name="timeStamp" value="4" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/com/interviewBitScaler/LectureXX_Graph1/RottenOrange.java</url>
++          <line>57</line>
++          <option name="timeStamp" value="7" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/com/interviewBitScaler/LectureXX_Graph1/RottenOrange.java</url>
++          <line>58</line>
++          <option name="timeStamp" value="8" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/com/interviewBitScaler/LectureXX_Graph1/RottenOrange.java</url>
++          <line>51</line>
++          <option name="timeStamp" value="10" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/com/utility/collectionCOnversion/Sorting.java</url>
++          <line>28</line>
++          <option name="timeStamp" value="14" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/com/utility/collectionCOnversion/Sorting.java</url>
++          <line>21</line>
++          <option name="timeStamp" value="15" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/com/utility/collectionCOnversion/CharacterArray.java</url>
++          <line>11</line>
++          <option name="timeStamp" value="17" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/com/utility/collectionCOnversion/StringSplit_domain_subdomain.java</url>
++          <line>27</line>
++          <option name="timeStamp" value="19" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/com/utility/collectionCOnversion/StringReplace.java</url>
++          <line>26</line>
++          <option name="timeStamp" value="20" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/com/company/samsara/RotateMatrix.java</url>
++          <line>36</line>
++          <option name="timeStamp" value="22" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/com/company/samsara/Test2.java</url>
++          <line>51</line>
++          <option name="timeStamp" value="23" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/com/company/samsara/Test2.java</url>
++          <line>54</line>
++          <option name="timeStamp" value="24" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/com/coding/dequeu/Starter.java</url>
++          <line>11</line>
++          <option name="timeStamp" value="25" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/com/company/samsara/ArrayClass2.java</url>
++          <line>19</line>
++          <option name="timeStamp" value="28" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/com/company/samsara/ArrayClass2.java</url>
++          <line>22</line>
++          <option name="timeStamp" value="29" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/com/company/samsara/ArrayClass2.java</url>
++          <line>26</line>
++          <option name="timeStamp" value="32" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/com/company/samsara/TwoD_ArrayDiagonalTravrse.java</url>
++          <line>7</line>
++          <option name="timeStamp" value="35" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/com/company/samsara/TwoD_ArrayDiagonalTravrse.java</url>
++          <line>58</line>
++          <option name="timeStamp" value="36" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/com/company/samsara/TwoD_ArrayDiagonalTravrse.java</url>
++          <line>26</line>
++          <option name="timeStamp" value="38" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/com/company/Main.java</url>
++          <line>10</line>
++          <option name="timeStamp" value="39" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/com/company/Main.java</url>
++          <line>24</line>
++          <option name="timeStamp" value="43" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/com/company/Main.java</url>
++          <line>40</line>
++          <option name="timeStamp" value="44" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/com/company/Main.java</url>
++          <line>49</line>
++          <option name="timeStamp" value="45" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/com/company/Twitter.java</url>
++          <line>6</line>
++          <option name="timeStamp" value="48" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/com/company/Twitter.java</url>
++          <line>15</line>
++          <option name="timeStamp" value="49" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/com/coding/recursion/Fibonaci.java</url>
++          <line>14</line>
++          <option name="timeStamp" value="52" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/com/coding/recursion/Fibonaci.java</url>
++          <line>18</line>
++          <option name="timeStamp" value="53" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/com/coding/recursion/Fibonaci.java</url>
++          <line>19</line>
++          <option name="timeStamp" value="54" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/com/coding/recursion/Fibonaci.java</url>
++          <line>16</line>
++          <option name="timeStamp" value="55" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/com/coding/recursion/TailRecursionSolve.java</url>
++          <line>14</line>
++          <option name="timeStamp" value="56" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/com/coding/recursion/TailRecursionSolve.java</url>
++          <line>20</line>
++          <option name="timeStamp" value="57" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/com/coding/recursion/advance/Scaler_GenerateAllCombinationOfSizeN.java</url>
++          <line>27</line>
++          <option name="timeStamp" value="59" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/com/coding/recursion/advance/Scaler_GenerateAllCombinationOfSizeN.java</url>
++          <line>28</line>
++          <option name="timeStamp" value="60" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/com/coding/recursion/advance/Scaler_GenerateAllCombinationOfSizeN.java</url>
++          <line>30</line>
++          <option name="timeStamp" value="61" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/com/coding/recursion/advance/Scaler_GenerateAllCombinationOfSizeN.java</url>
++          <line>31</line>
++          <option name="timeStamp" value="62" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/com/coding/recursion/advance/Scaler_GenerateAllCombinationOfSizeN.java</url>
++          <line>24</line>
++          <option name="timeStamp" value="63" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/com/coding/recursion/advance/A1subsequenceOfString_DuplicateSubset_Recursion_Advance.java</url>
++          <line>27</line>
++          <option name="timeStamp" value="66" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/com/coding/recursion/advance/A1subsequenceOfString_DuplicateSubset_Recursion_Advance.java</url>
++          <line>33</line>
++          <option name="timeStamp" value="67" />
++        </line-breakpoint>
++      </breakpoints>
++    </breakpoint-manager>
++  </component>
++</project>
+\ No newline at end of file
+Index: src/com/company/w.txt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/com/company/w.txt b/src/com/company/w.txt
+new file mode 100644
+--- /dev/null	(date 1632600194703)
++++ b/src/com/company/w.txt	(date 1632600194703)
+@@ -0,0 +1,21 @@
++Input (stdin)
++
++2
++palantir.com
++nic.cl
++4
++paiantir.com
++nic.ci
++palantirtechnologies.com
++nlc.biz
++
++Your Output (stdout)
++paiantir.com
++nic.ci
++nlc.biz
++palantirtechnologies.com
++
++Expected Output
++paiantir.com
++nic.ci
++nlc.biz
+\ No newline at end of file
+Index: out/production/codingInterview_prep/com/PatkarSir_core/project/hello1.bat
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/out/production/codingInterview_prep/com/PatkarSir_core/project/hello1.bat b/out/production/codingInterview_prep/com/PatkarSir_core/project/hello1.bat
+new file mode 100644
+--- /dev/null	(date 1629144620856)
++++ b/out/production/codingInterview_prep/com/PatkarSir_core/project/hello1.bat	(date 1629144620856)
+@@ -0,0 +1,20 @@
++@echo off
++echo 1.1
++for /F "tokens=2" %%i in ('date /t') do set mydate=%%i
++set mytime=%time%
++echo Current time from1.1 %mydate%:%mytime%
++
++TIMEOUT  10
++echo 1.2
++for /F "tokens=2" %%i in ('date /t') do set mydate=%%i
++set mytime=%time%
++echo Current time from1.2 %mydate%:%mytime%
++
++TIMEOUT  10
++
++echo 1.3
++for /F "tokens=2" %%i in ('date /t') do set mydate=%%i
++set mytime=%time%
++echo Current time from1.3 %mydate%:%mytime%
++
++TIMEOUT  10
+Index: src/com/company/Twitter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/com/company/Twitter.java b/src/com/company/Twitter.java
+new file mode 100644
+--- /dev/null	(date 1632772609164)
++++ b/src/com/company/Twitter.java	(date 1632772609164)
+@@ -0,0 +1,55 @@
++package com.company;
++
++public class Twitter {
++    public static void main(String[] args) {
++        Twitter t = new Twitter();
++        TreeNode node = new TreeNode(1);
++        t.isBalanced(node);
++    }
++
++    public boolean isBalanced(TreeNode root) {
++        BinaryTreeData ans = height(root);
++        return ans.isBalance;
++    }
++
++    public BinaryTreeData height(TreeNode root){
++        if(root == null){
++            new BinaryTreeData(true,0);
++        }
++        System.out.println(root.val);
++        BinaryTreeData left = height(root.left);
++        if(left.isBalance== false) return new BinaryTreeData(false,0);
++
++        BinaryTreeData right = height(root.right);
++        if(right.isBalance== false) return new BinaryTreeData(false,0);
++
++        if(Math.abs(left.height-right.height) <2)
++            return  new BinaryTreeData(true,Math.max(left.height,right.height)+1);
++
++        return new BinaryTreeData(false,0);
++    }
++      public static class TreeNode {
++          int val;
++         TreeNode left;
++          TreeNode right;
++          TreeNode() {}
++         TreeNode(int val) { this.val = val; }
++         TreeNode(int val, TreeNode left, TreeNode right) {
++              this.val = val;
++             this.left = left;
++             this.right = right;
++          }
++     }
++
++    class BinaryTreeData{
++        boolean isBalance;
++        int height;
++
++        BinaryTreeData(boolean isBalance, int height){
++            this.isBalance = isBalance;
++            this.height = height;
++        }
++    }
++
++
++}
+Index: out/production/codingInterview_prep/com/company/w.txt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/out/production/codingInterview_prep/com/company/w.txt b/out/production/codingInterview_prep/com/company/w.txt
+new file mode 100644
+--- /dev/null	(date 1632600194703)
++++ b/out/production/codingInterview_prep/com/company/w.txt	(date 1632600194703)
+@@ -0,0 +1,21 @@
++Input (stdin)
++
++2
++palantir.com
++nic.cl
++4
++paiantir.com
++nic.ci
++palantirtechnologies.com
++nlc.biz
++
++Your Output (stdout)
++paiantir.com
++nic.ci
++nlc.biz
++palantirtechnologies.com
++
++Expected Output
++paiantir.com
++nic.ci
++nlc.biz
+\ No newline at end of file
+Index: src/com/company/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.company;\r\n\r\nimport java.util.stream.Stream;\r\n\r\npublic class Main {\r\n\r\n    public static void main(String[] args)  {\r\n        Main m = new Main();\r\n        m.start();\r\n    }\r\n\r\n    void start(){\r\n        long[] a1= {3,4,5};\r\n        long[] a2= fix(a1);\r\n        System.out.println(a1[0] +a1[1]+a1[2]+ \" \");\r\n        System.out.println(a2[0] +a2[1]+a2[2]);\r\n    }\r\n    long[] fix(long[] a3){\r\n        a3[1]=7;\r\n        return a3;\r\n    }\r\n\r\n//    protected abstract void m1();\r\n//    static final void m1();\r\n//    transient private native void m1();\r\n//    synchronized public final void  m1();\r\n//    private native void ma();\r\n//    static final synchronized protected void m1();\r\n\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/com/company/Main.java b/src/com/company/Main.java
+--- a/src/com/company/Main.java	(revision 57c5d91359c3dc0c4424c18deec5cf7a360bb9b2)
++++ b/src/com/company/Main.java	(date 1632600412972)
+@@ -1,31 +1,84 @@
+ package com.company;
+ 
++import java.util.*;
++import java.util.stream.Collectors;
+ import java.util.stream.Stream;
+ 
+ public class Main {
+ 
+     public static void main(String[] args)  {
+-        Main m = new Main();
+-        m.start();
++        String s = "ggogle.com.co";
++        String [] k = s.split("\\.",1);
++
++        typosquats(new ArrayList<>(Arrays.asList("palantir.com",
++                        "nic.cl")),
++                new ArrayList<>(Arrays.asList("paiantir.com" ,
++                        "nic.ci" ,
++                        "palantirtechnologies.com" ,
++                        "nlc.biz")));
++    }
++
++    public static List<String> typosquats(List<String> companyDomains, List<String> newDomains) {
++
++//        List<String> ans = new ArrayList<>();
++        Set<String> ans = new HashSet<>();
++        Map<String,String> domainMapper = new HashMap<>();
++
++        List<Set<Character>> listOfTypo = new ArrayList<>();
++        listOfTypo.add(new HashSet<>(Arrays.asList('1', 'i', 'l', '!', '|')));
++        listOfTypo.add(new HashSet<>(Arrays.asList('s', '5', '$')));
++        listOfTypo.add(new HashSet<>(Arrays.asList('o', '0')));
++        listOfTypo.add(new HashSet<>(Arrays.asList('a','@')));
++        listOfTypo.add(new HashSet<>(Arrays.asList('e','3')));
++
++        for(String domainName : companyDomains){
++            String[] s = domainName.split("\\.",2);
++            domainMapper.put(s[0], s[1]);
++        }
++
++        for(String typo : newDomains){
++            for(String og: companyDomains){
++                if(checktypo(og,typo,listOfTypo)) ans.add(typo);
++            }
++        }
++        for(String typo : newDomains){
++            String[] s = typo.split("\\.",2);
++            if(domainMapper.containsKey(s[0]) && !domainMapper.get(s[0]).equals(s[1])){
++                String originalMatched = s[0]+"."+domainMapper.get(s[0]);
++                if(!typo.equals(originalMatched)){
++                    if(!companyDomains.contains(typo) && checktypo(originalMatched,typo,listOfTypo))
++                        ans.add(typo);
++                }
++            }
++        }
++
++        return ans.stream().collect(Collectors.toList());
+     }
+ 
+-    void start(){
+-        long[] a1= {3,4,5};
+-        long[] a2= fix(a1);
+-        System.out.println(a1[0] +a1[1]+a1[2]+ " ");
+-        System.out.println(a2[0] +a2[1]+a2[2]);
+-    }
+-    long[] fix(long[] a3){
+-        a3[1]=7;
+-        return a3;
+-    }
++    public static boolean checktypo(String original,String Typo, List<Set<Character>> listOfTypo){
++
++        int n = Typo.length();
++        int m = original.length();
++
++        if(n==m){
++            for(int i=0;i<n && i<m;i++){
++                if(original.charAt(i) != Typo.charAt(i)){
++                    for(Set<Character> set : listOfTypo){
++                        if(set.contains(Typo.charAt(i))){
++                            for(Character ch : set){
++                                if(ch == Typo.charAt(i)){
++                                    return true;
++                                }
++                            }
++                        };
++                    }
++                }
++            }
++        }
+ 
+-//    protected abstract void m1();
+-//    static final void m1();
+-//    transient private native void m1();
+-//    synchronized public final void  m1();
+-//    private native void ma();
+-//    static final synchronized protected void m1();
++        return false;
++    }
++
+ 
+ }
+ 
