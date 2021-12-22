@@ -5,6 +5,7 @@ import java.util.Map;
 
 public class LRUCache extends LinkedHashMap<Integer,Integer> {
     int capacity;
+
     public LRUCache(int capacity) {
         super(capacity,0.75F,true);
         this.capacity = capacity;

@@ -1,43 +1,50 @@
 package com.interviewBitScaler.Lecture2_Arrays2;
 public class WordSearchIn2DArray {
 
+    private char[][] board;
+    private int ROWS;
+    private int COLS;
+
     public static void main(String[] args) {
         char[][] board = new char [][]{{'A','B','C','E'},{'S','F','C','S'},{'A','D','E','E'}};
         String word = "SEE";
-        System.out.println(exist(board,word));
+        WordSearchIn2DArray a = new WordSearchIn2DArray();
+        System.out.println(a.exist(board,word));
     }
-    public static boolean exist(char[][] board, String word) {
-        int[] horizontal = new int[]{1,0,-1,0};
-        int[] vertical = new int[]{0,1,0,-1};
+    public boolean exist(char[][] board, String word) {
+        this.board = board;
+        this.ROWS = board.length;
+        this.COLS = board[0].length;
 
-        return utility(board,word,horizontal,vertical,0,0,0);
+        for (int row = 0; row < this.ROWS; ++row)
+            for (int col = 0; col < this.COLS; ++col)
+                if (this.backtrack(row, col, word, 0))
+                    return true;
+        return false;
     }
 
-    public static boolean utility(char[][] board, String word,int[] horizontal,int[] vertical,int index,int rowIndex,int colIndex){
-
-        if(!isValid(board,rowIndex,colIndex,word,index)){
-            return false;
-        }
-
-        if(index == word.length()-1 && word.charAt(index)== board[rowIndex][colIndex])
+    protected boolean backtrack(int row, int col, String word, int index) {
+        /* Step 1). check the bottom case. */
+        if (index == word.length())
             return true;
-
-        for(int i=rowIndex;i<board.length;i++ ){
-            for(int j= colIndex ;j<board[0].length;j++){
-                if(board[i][j] == word.charAt(index)){
-                    return utility(board,word,horizontal,vertical,index+1,rowIndex+horizontal[0],colIndex+vertical[0])||
-                            utility(board,word,horizontal,vertical,index+1,rowIndex+horizontal[1],colIndex+vertical[1])||
-                            utility(board,word,horizontal,vertical,index+1,rowIndex+horizontal[2],colIndex+vertical[2])||
-                            utility(board,word,horizontal,vertical,index+1,rowIndex+horizontal[3],colIndex+vertical[3]);
-                }
-            }
+        /* Step 2). Check the boundaries. */
+        if (row < 0 || row == this.ROWS || col < 0 || col == this.COLS
+                || this.board[row][col] != word.charAt(index))
+            return false;
+        /* Step 3). explore the neighbors in DFS */
+        boolean ret = false;
+        // mark the path before the next exploration
+        this.board[row][col] = '#';
+        int[] rowOffsets = {0, 1, 0, -1};
+        int[] colOffsets = {1, 0, -1, 0};
+        for (int d = 0; d < 4; ++d) {
+            ret = this.backtrack(row + rowOffsets[d], col + colOffsets[d], word, index + 1);
+            if (ret)
+                break;
         }
-        return false;
-    }
-
-    static boolean isValid(char[][] board,int rowIndex,int colIndex,String word, int index){
-        if(rowIndex < board.length && colIndex <board[0].length && word.charAt(index) == board[rowIndex][colIndex]) return true;
-        return false;
+        /* Step 4). clean up and return the result. */
+        this.board[row][col] = word.charAt(index);
+        return ret;
     }
 
 }
