@@ -5,13 +5,13 @@ import java.util.Map;
 
 public class dfsTraversal {
 
-    static void traverseDFS(Map<Integer, ArrayList<Integer>> adjancencyMatrix, int[] visited, int node){
+    static void traverseDFS(Map<Integer, ArrayList<Integer>> adjancencyList, int[] visited, int node){
         if(visited[node] != 1){
             visited[node] = 1;
             System.out.println(node);
-            for( Integer element : adjancencyMatrix.get(node)){
+            for( Integer element : adjancencyList.get(node)){
 //                System.out.println("Element"+element);
-                traverseDFS(adjancencyMatrix,visited,element);
+                traverseDFS(adjancencyList,visited,element);
             }
         }
     }
@@ -24,7 +24,7 @@ public class dfsTraversal {
 //                      7     8
         GraphRepresentation graph = new GraphRepresentation();
         Pair[] arr = graph.getGraph();
-        Map<Integer, ArrayList<Integer> > adjacencyList = graph.generateAdjancencyMatrix(arr);
+        Map<Integer, ArrayList<Integer> > adjacencyList = graph.generateAdjancencyList_Of_Map(arr);
 
         System.out.println("------DFS------");
         int[] visitedDfs = new int[arr.length+1];

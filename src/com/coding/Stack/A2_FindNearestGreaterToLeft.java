@@ -42,14 +42,15 @@ public class A2_FindNearestGreaterToLeft {
     }
 
     public static void main(String[] args) {
-        int[] in = new int[]{5,9,1,59,25,68};
-
+        int[] in = new int[] {5,9,1,59,25,68};
         A2_FindNearestGreaterToLeft GTR = new A2_FindNearestGreaterToLeft();
         int[] out = GTR.nearestGreterToLeft(in);
         for(int i=0;i<out.length;i++)
             System.out.println(out[i]);
 //        Arrays.asList(out).forEach(n -> System.out.println(n));
     }
+
+
 
 
 }

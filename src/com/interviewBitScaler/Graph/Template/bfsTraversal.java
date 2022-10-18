@@ -16,16 +16,22 @@ public class bfsTraversal {
 
         while(!queue.isEmpty()){
             int size = queue.size();
+
             for(int i=0;i<size;i++){
                 int peek = queue.poll();
+
                 if(visited[peek] != 1){
                     visited[peek] = 1;
                     System.out.println(peek);
-                    ArrayList<Integer> arr = adjancencyList.get(peek);
-                    arr.forEach(ele -> queue.offer(ele));
+                    ArrayList<Integer> neighnourList = adjancencyList.get(peek);
+                    for(int index=0;index<neighnourList.size();index++){
+                        queue.offer(neighnourList.get(index));
+                    }
+//                    neighnourList.forEach(element -> queue.offer(element));
                 }
 
             }
+
         }
 
     }
@@ -39,7 +45,7 @@ public class bfsTraversal {
 
         GraphRepresentation graph = new GraphRepresentation();
         Pair[] arr = graph.getGraph();
-        Map<Integer, ArrayList<Integer> > adjacencyList = graph.generateAdjancencyMatrix(arr);
+        Map<Integer, ArrayList<Integer> > adjacencyList = graph.generateAdjancencyList_Of_Map(arr);
 
         System.out.println("------BFS------");
         int[] visitedBfs = new int[arr.length+1];

@@ -1,4 +1,4 @@
-package com.interviewBitScaler.Lecture7_Recursion;
+package com.coding.recursion.Lecture7_Recursion;
 
 import java.util.ArrayList;
 import java.util.List;

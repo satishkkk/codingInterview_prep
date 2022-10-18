@@ -1,4 +1,4 @@
-package com.interviewBitScaler.LectureXX_Graph1;
+package com.interviewBitScaler.Graph;
 
 import java.util.LinkedList;
 import java.util.Queue;

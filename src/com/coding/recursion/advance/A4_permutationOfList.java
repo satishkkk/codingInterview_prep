@@ -7,7 +7,7 @@ public class A4_permutationOfList {
     static List<List<Integer>> list = new ArrayList<>();
     public static void main(String[] args) {
         permute(new int[]{1,2,3});
-        list.forEach(System.out::println);
+//        list.forEach(System.out::println);
     }
 
 
@@ -28,11 +28,9 @@ public class A4_permutationOfList {
             return;
         }
 
-        for(int i=0;i<A.length;i++){
-            curr[index] = A[index];
+        for(int i=index;i<A.length;i++){//1,2,3
+            curr[index] = A[i];
             permuteHelper(A,curr,index+1);
         }
-
-
     }
 }

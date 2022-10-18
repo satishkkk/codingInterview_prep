@@ -19,10 +19,8 @@ public class ExclusiveTime {
                 if (!stack.isEmpty()) {
                     result[stack.peek().id] -= (log.time - top.time + 1);
                 }
-
             }
         }
-
         return result;
     }
 
@@ -38,4 +36,5 @@ public class ExclusiveTime {
             time = Integer.valueOf(strs[2]);
         }
     }
+
 }

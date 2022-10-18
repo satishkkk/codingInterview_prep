@@ -10,10 +10,12 @@ public class A1_subsetInSortedOrder {
     public static void main(String[] args) {
         ArrayList<Integer> A = new ArrayList<>(Arrays.asList(1,3,2));
         ArrayList<ArrayList<Integer>> aa= subsets(A);
-        System.out.println("jkds");
+
+        System.out.println(aa);
     }
 
     static ArrayList<ArrayList<Integer>> out = new ArrayList<>();
+
     public static ArrayList<ArrayList<Integer>> subsets(ArrayList<Integer> A) {
         int n = A.size();
         Collections.sort(A);

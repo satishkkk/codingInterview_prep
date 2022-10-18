@@ -1,4 +1,4 @@
-package com.interviewBitScaler.Lecture7_Recursion;
+package com.coding.recursion.Lecture7_Recursion;
 
 public class A1_test {
     public static void main(String[] args) {
